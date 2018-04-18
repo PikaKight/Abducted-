@@ -4,7 +4,7 @@ import time
 
 pygame.init()
 
-screen = pygame.display.set_mode((1280,680))
+screen = pygame.display.set_mode((1280,680),pygame.RESIZABLE)
 
 pygame.display.set_caption("Abducted")
 
@@ -18,9 +18,11 @@ def intro():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                start = False
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse = pygame.mouse.get_pos()
-                print (mouse)
+                print(mouse)
+                #if mouse[0] > 
+
         screen.fill(colr)
         pygame.draw.rect(screen,recc,[360,350,500,200],5)
         pygame.display.flip()
