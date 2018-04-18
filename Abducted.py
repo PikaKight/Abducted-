@@ -8,9 +8,9 @@ screen = pygame.display.set_mode((1280,680))
 
 pygame.display.set_caption("Abducted")
 
-colr = (255,20,56)
+colr = (0,0,0)
 
-recc = (0,0,0)
+recc = (255,255,255)
 
 def intro():
     start = True
