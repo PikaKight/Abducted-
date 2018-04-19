@@ -29,8 +29,10 @@ def gamestrt():#changes the screen to the game beginnin
             if event.type == pygame.KEYDOWN:
                if event.key is pygame.K_s:
                    screen.fill(recc)
-                   pygame.draw.rect(screen, colr,[465,350,350,100],7)
-                   pygame.display.flip()             
+                   pygame.draw.rect(screen, colr,[100,100,335,240],5)
+                   pygame.draw.rect(screen, colr,[445,100,335,240],5)
+                   pygame.draw.rect(screen, colr,[790,100,335,240],5)
+                   pygame.display.flip()
 
 intro()
 gamestrt()
