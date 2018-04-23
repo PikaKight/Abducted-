@@ -25,16 +25,15 @@ def gamestrt():#changes the screen to the game beginnin
     while start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-               start = False
-            if event.type == pygame.KEYDOWN:
-               if event.key is pygame.K_s:
-                   screen.fill(colr)
-                   pygame.draw.rect(screen, recc,[100,100,335,240],5)
-                   pygame.draw.rect(screen, recc,[470,100,335,240],5)
-                   pygame.draw.rect(screen, recc,[840,100,335,240],5)
-                   pygame.display.flip()
-               elif event.key is pygame.K_b:
-                   intro()
+                start = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse = pygame.mouse.get_pos()
+                if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 355 and mouse[1] < 445):
+                    screen.fill(colr)
+                    pygame.draw.rect(screen, recc,[100,50,335,400],5)
+                    pygame.draw.rect(screen, recc,[470,50,335,400],5)
+                    pygame.draw.rect(screen, recc,[840,50,335,400],5)
+                    pygame.display.flip()
 
 intro()
 gamestrt()
