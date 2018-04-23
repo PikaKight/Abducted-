@@ -26,9 +26,9 @@ def gamestrt():#changes the screen to the game beginnin
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 start = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN:#interagative button
                 mouse = pygame.mouse.get_pos()
-                if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 355 and mouse[1] < 445):
+                if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 355 and mouse[1] < 445):#The range of which the mouse clicks work
                     screen.fill(colr)
                     pygame.draw.rect(screen, recc,[100,50,335,400],5)
                     pygame.draw.rect(screen, recc,[470,50,335,400],5)
