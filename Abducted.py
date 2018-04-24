@@ -22,24 +22,44 @@ def intro(): #this is for the title screen
 
 def gamestrt():#changes the screen to the game beginnin              
     start = True
+    click = True
     while start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 start = False
-            if event.type == pygame.MOUSEBUTTONDOWN:#interagative button
+            for i in range(1):
+                if event.type == pygame.MOUSEBUTTONDOWN:#interagative button
+                    mouse = pygame.mouse.get_pos()
+                    if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 355 and mouse[1] < 445):#The range of which the mouse clicks work
+                        screen.fill(colr)
+                        pygame.draw.rect(screen, recc,[100,50,335,400],5)
+                        pygame.draw.rect(screen, recc,[470,50,335,400],5)
+                        pygame.draw.rect(screen, recc,[840,50,335,400],5)
+                        pygame.display.flip()
+
+def Choose():# To let player choose a character
+    start = True
+    while start:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                start = False
+            if event.type == pygame.MOUSEBUTTONDOWN:#interagative button to choose a character
                 mouse = pygame.mouse.get_pos()
-                if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 355 and mouse[1] < 445):#The range of which the mouse clicks work
+                if (mouse[0] > 105 and mouse[0] < 430) and (mouse[1] > 55 and mouse[1] < 445):
                     screen.fill(colr)
-                    pygame.draw.rect(screen, recc,[100,50,335,400],5)
-                    pygame.draw.rect(screen, recc,[470,50,335,400],5)
-                    pygame.draw.rect(screen, recc,[840,50,335,400],5)
+                    pygame.draw.rect(screen, recc, [50, 50, 500, 500, 7])
                     pygame.display.flip()
-            if event.type == pygame.KEYDOWN:
-                if event.key is pygame.K_b:
-                    intro()
-
-            
-
+                elif (mouse[0] > 475 and mouse[0] < 800) and (mouse[1] > 55 and mouse[1] < 445):
+                    screen.fill(colr)
+                    pygame.draw.rect(screen, recc, [50, 50, 500, 500, 7])
+                    pygame.display.flip()
+                elif (mouse[0] > 845 and mouse[0] < 1170) and (mouse[1] > 55 and mouse[1] < 445):
+                    screen.fill(colr)
+                    pygame.draw.rect(screen, recc, [50, 50, 500, 500, 7])
+                    pygame.display.flip()
+                else:
+                    break
 intro()
 gamestrt()
+Choose()
 pygame.quit()   
