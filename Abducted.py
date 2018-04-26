@@ -47,15 +47,17 @@ def gamestrt():#changes the screen to the game beginnin
 
 def character():
     start = True
+    use = True
     while start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 start = False
-                if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                while use:
                     mouse = pygame.mouse.get_pos()
                     click = pygame.mouse.get_pressed()
-                    if 105 + 330 > mouse[0] > 105 and 55+395>mouse[1] > 55 :
-                        if click == 1:
+                    if 105 + 330 > mouse[0] > 105 and 55 + 395 > mouse[1]  > 55:
+                        if click[0] == 1:
                             print ("works")
         
 
