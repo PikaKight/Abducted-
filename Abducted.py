@@ -14,17 +14,20 @@ recc = (255,255,255) #box colour
 
 timer = pygame.time.Clock()
 
+start = True
+
+use = True
+
 def intro(): #this is for the title screen
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            start = False
-    screen.fill(colr)
-    pygame.draw.rect(screen,recc,[465,350,350,100],5)
-    pygame.display.flip()    
+   while start: 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                start = False
+        screen.fill(colr)
+        pygame.draw.rect(screen,recc,[465,350,350,100],5)
+        pygame.display.flip()    
      
-def gamestrt():#changes the screen to the game beginnin              
-    start = True
-    use = True
+def gamestrt():#changes the screen to the game beginnin 
     while start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -46,8 +49,6 @@ def gamestrt():#changes the screen to the game beginnin
                             use = False
 
 def character():
-    start = True
-    use = True
     while start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
