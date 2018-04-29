@@ -14,17 +14,16 @@ recc = (255,255,255) #box colour
 
 timer = pygame.time.Clock()
 
-def button(x, y, w, h, action = None): #creates a button and their effects 
+def button(x, y, w, h, action): #creates a button and their effects 
     for event in pygame.event.get():
         use = True
         while use:
                 if x + w > mouse[0] > x  and y + h > mouse[1] > y:
-                    if action != None:
-                        if action == "Start":
-                            gamestrt()
-                        if action == "ChrC":
-                            charcter()
-        
+                    if action == "Start":
+                        gamestrt()
+                    if action == "ChrC":
+                        character()
+
 def intro(): #this is for the title screen
     start = True
     while start:
@@ -35,7 +34,8 @@ def intro(): #this is for the title screen
             if event.type == pygame.QUIT:
                 start = False
             if event.type == pygame.evnt.MOUSEBUTTONDOWN:
-                button(465,350,350,100, "Start")
+                    if 465 + 350 > mouse[0] > 465  and 350 + 100 > mouse[1] > 350:
+                        button(465,350,350,100, "Start")
                 
         
      
