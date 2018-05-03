@@ -24,6 +24,7 @@ def textObj(msg, text):
     return textcolour, textcolour.get_rect()
 
 def Startaction():
+    start = True
     while start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -35,9 +36,11 @@ def Startaction():
                     pygame.draw.rect(screen, recc,[100,50,335,400],5)
                     pygame.draw.rect(screen, recc,[470,50,335,400],5)
                     pygame.draw.rect(screen, recc,[840,50,335,400],5)
+                    text("Choose a Character using the Arrow keys, Don't Click the Screen!", 100,500,1080,150, 50)
                     pygame.display.flip()
 
 def Cchoice():
+    start = True
     while start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -46,10 +49,13 @@ def Cchoice():
                 if event.key == pygame.k_Right:
                     pygame.draw.rect(screen, recc,[470,50,335,400],5)
                     
-                
-                
-                
-
+def text(msg, x, y, w, h, size):
+    global textfont
+    textfont = pygame.font.SysFont('forte_o', size)
+    textscreen, textrecc = textObj(msg, textfont)
+    textrecc.center = ((x+(w/2)) , (y+(h/2)))
+    screen.blit(textscreen, textrecc)
+    
 def button(msg, x, y, w, h, sc, hc, a):
     global mouse
     mouse = pygame.mouse.get_pos()
