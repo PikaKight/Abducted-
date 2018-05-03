@@ -24,7 +24,6 @@ def textObj(msg, text):
     return textcolour, textcolour.get_rect()
 
 def Startaction():
-    start = True
     while start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -37,7 +36,19 @@ def Startaction():
                     pygame.draw.rect(screen, recc,[470,50,335,400],5)
                     pygame.draw.rect(screen, recc,[840,50,335,400],5)
                     pygame.display.flip()
+
+def Cchoice():
+    while start:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                start = False
+            if event.tpye == pygame.KEYDOWN:
+                if event.key == pygame.k_Right:
+                    pygame.draw.rect(screen, recc,[470,50,335,400],5)
                     
+                
+                
+                
 
 def button(msg, x, y, w, h, sc, hc, a):
     global mouse
@@ -59,7 +70,8 @@ def button(msg, x, y, w, h, sc, hc, a):
     screen.blit(textscreen, textrecc)
 
     
-def intro(): #this is for the title
+def game(): #this is for the title
+    global start
     start = True
     while start:
         for event in pygame.event.get():
@@ -71,8 +83,8 @@ def intro(): #this is for the title
         pygame.display.flip()
         pygame.display.update()
         time.tick(15)    
-                        
+                      
         
 
-intro()
+game()
 pygame.quit()   
