@@ -38,6 +38,7 @@ def Cchoice():
                     screen.fill(colr)
                     pygame.display.update()
                     timer.tick(10)
+                    start = False
 
                 if event.key == pygame.K_KP2:
                     pygame.draw.rect(screen, hc, [470,50,335,400], 5)
@@ -47,7 +48,8 @@ def Cchoice():
                     screen.fill(colr)
                     pygame.display.update()
                     timer.tick(10)
-        
+                    start = False
+                    
                 if event.key == pygame.K_KP3:
                     pygame.draw.rect(screen, hc,[840,50,335,400],5)
                     pygame.display.update()
@@ -55,7 +57,8 @@ def Cchoice():
                     pygame.time.delay(1000)
                     screen.fill(colr)
                     pygame.display.update()
-                    timer.tick(10)  
+                    timer.tick(10)
+                    start = False
                     
 def Startaction():
     start = True
@@ -73,6 +76,7 @@ def Startaction():
                     text("Don't click the Screen! Choose a character using num pad 1, 2 or 3", 50,500,1080,150, 50)
                     pygame.display.flip()
                     Cchoice()
+                    
 
                     
 def text(msg, x, y, w, h, size):
@@ -115,7 +119,7 @@ def game(): #this is for the title
         pygame.display.flip()
         pygame.display.update()
         timer.tick(15)
-        
+  
                       
         
 
