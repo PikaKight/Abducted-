@@ -13,16 +13,50 @@ colr = (0,0,0) #Background colour
 
 recc = (255,255,255) #box colour
 
-sc = (100, 250 , 0)
+sc = (100, 250 , 0) #start button colour 
 
-hc = (100, 255, 150)
+hc = (100, 255, 150) #highlight colour
 
-time = pygame.time.Clock()
+timer = pygame.time.Clock()
 
 def textObj(msg, text):
     textcolour =  textfont.render(msg, 1,  recc)
     return textcolour, textcolour.get_rect()
 
+def Cchoice():
+    start = True
+    while start:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                start = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_KP1:
+                    pygame.draw.rect(screen, hc,[100,50,335,400],5)
+                    pygame.display.update()
+                    timer.tick(10)
+                    pygame.time.delay(1000)
+                    screen.fill(colr)
+                    pygame.display.update()
+                    timer.tick(10)
+
+                if event.key == pygame.K_KP2:
+                    pygame.draw.rect(screen, hc, [470,50,335,400], 5)
+                    pygame.display.update()
+                    timer.tick(10)
+                    pygame.time.delay(1000)
+                    screen.fill(colr)
+                    pygame.display.update()
+                    timer.tick(10)
+        
+                if event.key == pygame.K_KP3:
+                    pygame.draw.rect(screen, hc,[840,50,335,400],5)
+                    pygame.display.update()
+                    timer.tick(10)
+                    pygame.time.delay(1000)
+                    screen.fill(colr)
+                    pygame.display.update()
+                    timer.tick(10)  
+                    
 def Startaction():
     start = True
     while start:
@@ -36,18 +70,10 @@ def Startaction():
                     pygame.draw.rect(screen, recc,[100,50,335,400],5)
                     pygame.draw.rect(screen, recc,[470,50,335,400],5)
                     pygame.draw.rect(screen, recc,[840,50,335,400],5)
-                    text("Choose a Character using the Arrow keys, Don't Click the Screen!", 100,500,1080,150, 50)
+                    text("Don't click the Screen! Choose a character using num pad 1, 2 or 3", 50,500,1080,150, 50)
                     pygame.display.flip()
+                    Cchoice()
 
-def Cchoice():
-    start = True
-    while start:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                start = False
-            if event.tpye == pygame.KEYDOWN:
-                if event.key == pygame.k_Right:
-                    pygame.draw.rect(screen, recc,[470,50,335,400],5)
                     
 def text(msg, x, y, w, h, size):
     global textfont
@@ -88,7 +114,8 @@ def game(): #this is for the title
         button("Start", 465,350,350,100, sc, hc, 1)
         pygame.display.flip()
         pygame.display.update()
-        time.tick(15)    
+        timer.tick(15)
+        
                       
         
 
