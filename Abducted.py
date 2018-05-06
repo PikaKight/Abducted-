@@ -20,7 +20,7 @@ timer = pygame.time.Clock()
 
 def textObj(msg, text):
     textcolour =  textfont.render(msg, 1,  recc)
-    return textcolour, textcolour.get_rect()
+s    return textcolour, textcolour.get_rect()
 
 def Cchoice():
     start = True
@@ -35,6 +35,7 @@ def Cchoice():
                     timer.tick(10)
                     pygame.time.delay(1000)
                     screen.fill(colr)
+                    pygame.draw.rect(screen, recc, [100, 100, 1100, 500])
                     pygame.display.update()
                     timer.tick(10)
                     start = False
@@ -69,10 +70,13 @@ def Startaction():
                 if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 355 and mouse[1] < 445):#The range of which the mouse clicks 
                     print ("Hello")
                     screen.fill(colr)
+                    #text("Don't click the Screen! ", 50,500,1080,150, 50)
+                    #pygame.time.delay(2000)
+                    screen.fill(colr)
                     pygame.draw.rect(screen, recc,[100,50,335,400],5)
                     pygame.draw.rect(screen, recc,[470,50,335,400],5)
                     pygame.draw.rect(screen, recc,[840,50,335,400],5)
-                    text("Don't click the Screen! Choose a character using num pad 1, 2 or 3", 50,500,1080,150, 50)
+                    text("Choose a character using num pad 1, 2 or 3", 50,500,1080,150, 50)
                     pygame.display.flip()
                     Cchoice()
                     
