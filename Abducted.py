@@ -73,18 +73,18 @@ def Cchoice():
                     pygame.draw.rect(screen, hc,[100,50,335,400],5)
                     pygame.display.update()
                     timer.tick(10)
-                    pygame.time.delay(15)
+                    pygame.time.delay(250)
                     screen.fill(colr)
                     story("M")
                     pygame.display.update()
-                    timer.tick(10)
+                    timer.tick(60)
                     start = False
 
                 if event.key == pygame.K_KP2:
                     pygame.draw.rect(screen, hc, [470,50,335,400], 5)
                     pygame.display.update()
                     timer.tick(10)
-                    pygame.time.delay(15)
+                    pygame.time.delay(250)
                     screen.fill(colr)
                     story("F")
                     pygame.display.update()
@@ -95,7 +95,7 @@ def Cchoice():
                     pygame.draw.rect(screen, hc,[840,50,335,400],5)
                     pygame.display.update()
                     timer.tick(10)
-                    pygame.time.delay(15)
+                    pygame.time.delay(250)
                     screen.fill(colr)
                     story("O")
                     pygame.display.update()
@@ -105,16 +105,30 @@ def Cchoice():
 def story(a):
     if a == "M":
         text("Greeting Player, I am  ", 100, 75, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
         pygame.time.delay(2000)
         text("You are Trapped  ", 100, 175, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+
     if a == "F":
         text("Greeting Player, I am ", 100, 75, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
         pygame.time.delay(2000)
         text("You are Trapped  ", 100, 175, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+
     if a == "O":
         text("Greeting Player, I am ", 100, 75, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
         pygame.time.delay(2000)
         text("You are Trapped  ", 100, 175, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
                     
 def Startaction():
     start = True
