@@ -20,7 +20,7 @@ timer = pygame.time.Clock()
 
 def textObj(msg, text):
     textcolour =  textfont.render(msg, 1,  recc)
-s    return textcolour, textcolour.get_rect()
+    return textcolour, textcolour.get_rect()
 
 def Cchoice():
     start = True
@@ -36,6 +36,8 @@ def Cchoice():
                     pygame.time.delay(1000)
                     screen.fill(colr)
                     pygame.draw.rect(screen, recc, [100, 100, 1100, 500])
+                    pygame.draw.rect(screen, sc, [100, 200, 1100, 500])
+                    pygame.draw.rect(screen, hc, [100, 300, 1100, 500])
                     pygame.display.update()
                     timer.tick(10)
                     start = False
