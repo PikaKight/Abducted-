@@ -69,7 +69,7 @@ def Cchoice():
             if event.type == pygame.QUIT:
                 start = False
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_KP1:
+                if event.key == pygame.K_1:
                     pygame.draw.rect(screen, hc,[100,50,335,400],5)
                     pygame.display.update()
                     timer.tick(10)
@@ -80,7 +80,7 @@ def Cchoice():
                     timer.tick(60)
                     start = False
 
-                if event.key == pygame.K_KP2:
+                if event.key == pygame.K_2:
                     pygame.draw.rect(screen, hc, [470,50,335,400], 5)
                     pygame.display.update()
                     timer.tick(10)
@@ -91,7 +91,7 @@ def Cchoice():
                     timer.tick(10)
                     start = False
                     
-                if event.key == pygame.K_KP3:
+                if event.key == pygame.K_3:
                     pygame.draw.rect(screen, hc,[840,50,335,400],5)
                     pygame.display.update()
                     timer.tick(10)
@@ -111,15 +111,53 @@ def story(a):
         text("You are Trapped  ", 100, 175, 1100, 100, 50)
         pygame.display.update()
         timer.tick(30)
+        pygame.time.delay(2000)
+        text("To escape", 100, 275, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+        pygame.time.delay(2000)
+        text("Listen to my intrustion carefully.", 100, 375, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+        pygame.time.delay(2000)
+        text("Be caustious, you are about to wake up.", 100, 475, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    screen.fill(colr)
+                    text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
+                    pygame.display.update()
+                    timer.tick(30)
+                    time.delay(2000)
+                    text(" ", 100, 175, 1100, 100, 50)
+                    pygame.display.update()
+                    timer.tick(30)
+                    time.delay(2000)
 
     if a == "F":
         text("Greeting Player, I am ", 100, 75, 1100, 100, 50)
         pygame.display.update()
         timer.tick(30)
         pygame.time.delay(2000)
-        text("You are Trapped  ", 100, 175, 1100, 100, 50)
+        text("You are TRAPPED in the dungeon of the   ", 100, 175, 1100, 100, 50)
         pygame.display.update()
         timer.tick(30)
+        text("To escape", 100, 275, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+        pygame.time.delay(2000)
+        text("Listen to my intrustion carefully.", 100, 375, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+        pygame.time.delay(2000)
+        text("Be caustious, you are about to wake up.", 100, 475, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+        pygame.time.delay(2000)
+
+
 
     if a == "O":
         text("Greeting Player, I am ", 100, 75, 1100, 100, 50)
@@ -129,6 +167,18 @@ def story(a):
         text("You are Trapped  ", 100, 175, 1100, 100, 50)
         pygame.display.update()
         timer.tick(30)
+        text("To escape", 100, 275, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+        pygame.time.delay(2000)
+        text("Listen to my intrustion carefully.", 100, 375, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+        pygame.time.delay(2000)
+        text("Be caustious, you are about to wake up.", 100, 475, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
+        pygame.time.delay(2000)
                     
 def Startaction():
     start = True
