@@ -61,7 +61,29 @@ def button(msg, x, y, w, h, sc, hc, a):
     textscreen, textrecc = textObj(msg, textfont)
     textrecc.center = ((x+(w/2)) , (y+(h/2)))
     screen.blit(textscreen, textrecc)
-        
+
+def Startaction():
+    start = True
+    while start:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+               start = False
+            if event.type == pygame.MOUSEBUTTONDOWN:#interagative button
+                if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 355 and mouse[1] < 445):#The range of which the mouse clicks 
+                    print ("Hello")
+                    screen.fill(colr)
+                    text("Don't click the Screen! ", 100,300,1080,150, 100)
+                    pygame.display.update()
+                    timer.tick(30)
+                    pygame.time.delay(1500)
+                    screen.fill(colr)
+                    pygame.draw.rect(screen, recc,[100,50,335,400],5)
+                    pygame.draw.rect(screen, recc,[470,50,335,400],5)
+                    pygame.draw.rect(screen, recc,[840,50,335,400],5)
+                    text("Choose a character using 1, 2 or 3, Don't use Numb Pad", 50,500,1080,150, 50)
+                    pygame.display.flip()
+                    Cchoice()
+                    
 def Cchoice():
     start = True
     while start:
@@ -123,6 +145,9 @@ def story(a):
         text("Be cautious, you are about to wake up.", 100, 475, 1100, 100, 50)
         pygame.display.update()
         timer.tick(30)
+        text("Click space to continue -->", 100, 575, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -140,7 +165,6 @@ def story(a):
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(2000)
-
 
     if a == "F":
         text("Greeting Player, I am ", 100, 75, 1100, 100, 50)
@@ -161,7 +185,9 @@ def story(a):
         text("Be caustious, you are about to wake up.", 100, 475, 1100, 100, 50)
         pygame.display.update()
         timer.tick(30)
-        pygame.time.delay(2000)
+        text("Click space to continue -->", 100, 575, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -179,8 +205,6 @@ def story(a):
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(2000)
-
-
 
     if a == "O":
         text("Greeting Player, I am ", 100, 75, 1100, 100, 50)
@@ -201,7 +225,9 @@ def story(a):
         text("Be caustious, you are about to wake up.", 100, 475, 1100, 100, 50)
         pygame.display.update()
         timer.tick(30)
-        pygame.time.delay(2000)
+        text("Click space to continue -->", 100, 575, 1100, 100, 50)
+        pygame.display.update()
+        timer.tick(30)
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -218,32 +244,7 @@ def story(a):
                         text("They've been asleep for a while now", 100, 175, 1100, 100, 50)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(2000)
-
-                    
-def Startaction():
-    start = True
-    while start:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-               start = False
-            if event.type == pygame.MOUSEBUTTONDOWN:#interagative button
-                if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 355 and mouse[1] < 445):#The range of which the mouse clicks 
-                    print ("Hello")
-                    screen.fill(colr)
-                    #text("Don't click the Screen! ", 50,500,1080,150, 50)
-                    #pygame.time.delay(2000)
-                    screen.fill(colr)
-                    pygame.draw.rect(screen, recc,[100,50,335,400],5)
-                    pygame.draw.rect(screen, recc,[470,50,335,400],5)
-                    pygame.draw.rect(screen, recc,[840,50,335,400],5)
-                    text("Choose a character using 1, 2 or 3, Don't use Numb Pad", 50,500,1080,150, 50)
-                    pygame.display.flip()
-                    Cchoice()
-
-
-                      
-        
+                        pygame.time.delay(2000)       
 
 game()
 pygame.quit()   
