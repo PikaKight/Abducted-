@@ -120,21 +120,27 @@ def story(a):
         pygame.display.update()
         timer.tick(30)
         pygame.time.delay(2000)
-        text("Be caustious, you are about to wake up.", 100, 475, 1100, 100, 50)
+        text("Be cautious, you are about to wake up.", 100, 475, 1100, 100, 50)
         pygame.display.update()
         timer.tick(30)
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    screen.fill(colr)
-                    text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
-                    pygame.display.update()
-                    timer.tick(30)
-                    time.delay(2000)
-                    text(" ", 100, 175, 1100, 100, 50)
-                    pygame.display.update()
-                    timer.tick(30)
-                    time.delay(2000)
+        keypress = True
+        while keypress:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    keypress = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        screen.fill(colr)
+                        pygame.time.delay(1000)
+                        text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
+                        pygame.display.update()
+                        timer.tick(30)
+                        pygame.time.delay(2000)
+                        text("He's been asleep for a while now", 100, 175, 1100, 100, 50)
+                        pygame.display.update()
+                        timer.tick(30)
+                        pygame.time.delay(2000)
+
 
     if a == "F":
         text("Greeting Player, I am ", 100, 75, 1100, 100, 50)
@@ -156,6 +162,23 @@ def story(a):
         pygame.display.update()
         timer.tick(30)
         pygame.time.delay(2000)
+        keypress = True
+        while keypress:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    keypress = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        screen.fill(colr)
+                        pygame.time.delay(1000)
+                        text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
+                        pygame.display.update()
+                        timer.tick(30)
+                        pygame.time.delay(2000)
+                        text("She's been asleep for a while now", 100, 175, 1100, 100, 50)
+                        pygame.display.update()
+                        timer.tick(30)
+                        pygame.time.delay(2000)
 
 
 
@@ -179,6 +202,24 @@ def story(a):
         pygame.display.update()
         timer.tick(30)
         pygame.time.delay(2000)
+        keypress = True
+        while keypress:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    keypress = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        screen.fill(colr)
+                        pygame.time.delay(1000)
+                        text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
+                        pygame.display.update()
+                        timer.tick(30)
+                        pygame.time.delay(2000)
+                        text("They've been asleep for a while now", 100, 175, 1100, 100, 50)
+                        pygame.display.update()
+                        timer.tick(30)
+                        pygame.time.delay(2000)
+
                     
 def Startaction():
     start = True
@@ -196,7 +237,7 @@ def Startaction():
                     pygame.draw.rect(screen, recc,[100,50,335,400],5)
                     pygame.draw.rect(screen, recc,[470,50,335,400],5)
                     pygame.draw.rect(screen, recc,[840,50,335,400],5)
-                    text("Choose a character using num pad 1, 2 or 3", 50,500,1080,150, 50)
+                    text("Choose a character using 1, 2 or 3, Don't use Numb Pad", 50,500,1080,150, 50)
                     pygame.display.flip()
                     Cchoice()
 
