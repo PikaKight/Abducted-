@@ -253,39 +253,34 @@ def tutorial():
        screen.fill(colr)
        pygame.draw.rect(screen, recc, [50, 50, 1000, 500], 5)
        pygame.display.flip()
-       
-
-def characterImg( testchr ,x, y):
+       x = 100
+       y = 100
+       xc = 0
+       yc = 0
+       start = True
+       while start:
+           for event in pygame.event.get():
+               if event.type == pygame.QUIT:
+                   start = False
+               if event.type == pygame.KEYDOWN:
+                   if event.key == K_w:
+                       yc += 2
+                   if event.key == K_a:
+                       xc -= 2
+                   if event.key == K_s:
+                       yc -= 2
+                   if event.key == K_d:
+                       xc += 2
+           x += xc
+           y+= yc
+           characterImg( x, y)
+           pygame.display.update()
+           timer.tick(30)
+            
+def characterImg( x, y):
      testchr = pygame.image.load('testimg')
-    screen.blit(testchr,x, y)
+     screen.blit(testchr,x,y)
 
-x = 100
-y = 100
-xc = 0
-yc = 0
-start = True
-while start:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            start = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == K_w:
-                yc += 2
-                pygame.display.update()
-                timer.tick(15)
-            if event.key == K_a:
-                xc -= 2
-                pygame.display.update()
-                timer.tick(15)
-            if event.key == K_s:
-                yc -= 2
-                pygame.display.update()
-                timer.tick(15)
-            if event.key == K_d:
-                xc += 2
-                x += xc
-                pygame.display.update()
-                timer.tick(15)
-y += yc                 
+    
 game()
 pygame.quit()   
