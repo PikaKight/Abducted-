@@ -1,5 +1,5 @@
 import pygame
-
+from pygame.locals import*
 import time
 
 pygame.init()
@@ -17,21 +17,6 @@ sc = (100, 250 , 0) #start button colour
 hc = (100, 255, 150) #highlight colour
 
 timer = pygame.time.Clock()
-
-def game(): #this is for the title
-    global start
-    start = True
-    while start:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                start = False
-
-        screen.fill(colr)
-        button("Start", 465,350,350,100, sc, hc, 1)
-        pygame.display.flip()
-        pygame.display.update()
-        timer.tick(15)
-  
 
 def textObj(msg, text):
     textcolour =  textfont.render(msg, 1,  recc)
@@ -62,6 +47,20 @@ def button(msg, x, y, w, h, sc, hc, a):
     textrecc.center = ((x+(w/2)) , (y+(h/2)))
     screen.blit(textscreen, textrecc)
 
+def game(): #this is for the title
+    global start
+    start = True
+    while start:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                start = False
+
+        screen.fill(colr)
+        button("Start", 465,350,350,100, sc, hc, 1)
+        pygame.display.flip()
+        pygame.display.update()
+        timer.tick(15)
+ 
 def Startaction():
     start = True
     while start:
@@ -125,29 +124,30 @@ def Cchoice():
                     start = False
 
 def story(a):
+    text("Greeting Player, I am  ", 100, 75, 1100, 100, 50)
+    pygame.display.update()
+    timer.tick(30)
+    pygame.time.delay(1000)
+    text("You are Trapped  ", 100, 175, 1100, 100, 50)
+    pygame.display.update()
+    timer.tick(30)
+    pygame.time.delay(1000)
+    text("To escape", 100, 275, 1100, 100, 50)
+    pygame.display.update()
+    timer.tick(30)
+    pygame.time.delay(1000)
+    text("Listen to my intrustion carefully.", 100, 375, 1100, 100, 50)
+    pygame.display.update()
+    timer.tick(30)
+    pygame.time.delay(1000)
+    text("Be cautious, you are about to wake up.", 100, 475, 1100, 100, 50)
+    pygame.display.update()
+    timer.tick(30)
+    text("Click space to continue -->", 100, 575, 1100, 100, 50)
+    pygame.display.update()
+    timer.tick(30)
+    
     if a == "M":
-        text("Greeting Player, I am  ", 100, 75, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        pygame.time.delay(2000)
-        text("You are Trapped  ", 100, 175, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        pygame.time.delay(2000)
-        text("To escape", 100, 275, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        pygame.time.delay(2000)
-        text("Listen to my intrustion carefully.", 100, 375, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        pygame.time.delay(2000)
-        text("Be cautious, you are about to wake up.", 100, 475, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        text("Click space to continue -->", 100, 575, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -160,7 +160,7 @@ def story(a):
                         text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(2000)
+                        pygame.time.delay(1000)
                         text("He's been asleep for a while now", 100, 175, 1100, 100, 50)
                         pygame.display.update()
                         timer.tick(30)
@@ -168,27 +168,6 @@ def story(a):
                         tutorial()
 
     if a == "F":
-        text("Greeting Player, I am ", 100, 75, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        pygame.time.delay(2000)
-        text("You are TRAPPED in the dungeon of the   ", 100, 175, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        text("To escape", 100, 275, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        pygame.time.delay(2000)
-        text("Listen to my intrustion carefully.", 100, 375, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        pygame.time.delay(2000)
-        text("Be caustious, you are about to wake up.", 100, 475, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        text("Click space to continue -->", 100, 575, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -201,7 +180,7 @@ def story(a):
                         text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(2000)
+                        pygame.time.delay(1000)
                         text("She's been asleep for a while now", 100, 175, 1100, 100, 50)
                         pygame.display.update()
                         timer.tick(30)
@@ -209,27 +188,6 @@ def story(a):
                         tutorial()
 
     if a == "O":
-        text("Greeting Player, I am ", 100, 75, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        pygame.time.delay(2000)
-        text("You are Trapped  ", 100, 175, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        text("To escape", 100, 275, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        pygame.time.delay(2000)
-        text("Listen to my intrustion carefully.", 100, 375, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        pygame.time.delay(2000)
-        text("Be caustious, you are about to wake up.", 100, 475, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
-        text("Click space to continue -->", 100, 575, 1100, 100, 50)
-        pygame.display.update()
-        timer.tick(30)
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -242,44 +200,49 @@ def story(a):
                         text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(2000)
+                        pygame.time.delay(1000)
                         text("They've been asleep for a while now", 100, 175, 1100, 100, 50)
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(1000)
                         tutorial()
 
+def characterImg( x, y):
+     testchr = pygame.image.load('Users\PikaKight\Documents\GitHub\Abducted-\testimg.tif')
+     screen.blit(testchr,x,y)
+
 def tutorial():
        screen.fill(colr)
        pygame.draw.rect(screen, recc, [50, 50, 1000, 500], 5)
        pygame.display.flip()
-       x = 100
-       y = 100
-       xc = 0
-       yc = 0
-       start = True
-       while start:
-           for event in pygame.event.get():
-               if event.type == pygame.QUIT:
-                   start = False
-               if event.type == pygame.KEYDOWN:
-                   if event.key == K_w:
-                       yc += 2
-                   if event.key == K_a:
-                       xc -= 2
-                   if event.key == K_s:
-                       yc -= 2
-                   if event.key == K_d:
-                       xc += 2
-           x += xc
-           y+= yc
-           characterImg( x, y)
-           pygame.display.update()
-           timer.tick(30)
+       movement()
+
+def movement():
+    x = 100
+    y = 100
+    xc = 0
+    yc = 0
+    start = True
+    while start:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                start = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == K_w:
+                    yc += 2
+                if event.key == K_a:
+                    xc -= 2
+                if event.key == K_s:
+                    yc -= 2
+                if event.key == K_d:
+                    xc += 2
+                    
+        x += xc
+        y+= yc
+        characterImg( x, y)
+        pygame.display.update()
+        timer.tick(30)
             
-def characterImg( x, y):
-     testchr = pygame.image.load('testimg')
-     screen.blit(testchr,x,y)
 
     
 game()
