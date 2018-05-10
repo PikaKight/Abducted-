@@ -124,6 +124,8 @@ def Cchoice():
                     start = False
 
 def story(a):
+    global char
+    char = 0
     text("Greeting Player, I am  ", 100, 75, 1100, 100, 50)
     pygame.display.update()
     timer.tick(30)
@@ -148,6 +150,7 @@ def story(a):
     timer.tick(30)
     
     if a == "M":
+        char = 1
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -168,6 +171,7 @@ def story(a):
                         tutorial()
 
     if a == "F":
+        char = 2
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -188,6 +192,7 @@ def story(a):
                         tutorial()
 
     if a == "O":
+        char = 3
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -207,9 +212,10 @@ def story(a):
                         pygame.time.delay(1000)
                         tutorial()
 
-def characterImg( x, y):
-     testchr = pygame.image.load('Users\PikaKight\Documents\GitHub\Abducted-\testimg.tif')
-     screen.blit(testchr,x,y)
+def Chr( x, y):
+    if char == 2:
+     Chrct = pygame.image.load('Girl drawing Larger.png')
+     screen.blit(Chrct, (x, y))
 
 def tutorial():
        screen.fill(colr)
@@ -239,11 +245,10 @@ def movement():
                     
         x += xc
         y+= yc
-        characterImg( x, y)
+        Chr( x, y)
         pygame.display.update()
         timer.tick(30)
             
-
-    
+   
 game()
 pygame.quit()   
