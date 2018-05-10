@@ -221,7 +221,7 @@ def Chr( x, y):
 
 def tutorial():
        screen.fill(colr)
-       pygame.draw.rect(screen, recc, [50, 50, 1000, 500], 5)
+       pygame.draw.rect(screen, recc, [50, 50, 1100, 600], 5)
        pygame.display.flip()
        movement()
 
@@ -237,19 +237,29 @@ def movement():
                 start = False
             if event.type == pygame.KEYDOWN:
                 if event.key == K_w:
-                    yc -= 2
+                    yc -= 3
                 if event.key == K_a:
-                    xc -= 2
+                    xc -= 3
                 if event.key == K_s:
-                    yc += 2
+                    yc += 3
                 if event.key == K_d:
-                    xc += 2
-                    
+                    xc += 3
+            if event.type == pygame.KEYUP:
+                if event.key == K_w:
+                    yc = 0
+                if event.key == K_a:
+                    xc = 0
+                if event.key == K_s:
+                    yc = 0
+                if event.key == K_d:
+                    xc = 0        
         x += xc
         y+= yc
+        screen.fill(colr)
+        pygame.draw.rect(screen, recc, [50,50,1100, 600], 5)
         Chr( x, y)
-        
-            
-   
+        pygame.display.update()
+        timer.tick(30)
+
 game()
 pygame.quit()   
