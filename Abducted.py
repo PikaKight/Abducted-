@@ -216,6 +216,8 @@ def Chr( x, y):
     if char == 2:
      Chrct = pygame.image.load('Girl drawing Larger.png')
      screen.blit(Chrct, (x, y))
+     pygame.display.update()
+     timer.tick(30)
 
 def tutorial():
        screen.fill(colr)
@@ -235,19 +237,18 @@ def movement():
                 start = False
             if event.type == pygame.KEYDOWN:
                 if event.key == K_w:
-                    yc += 2
+                    yc -= 2
                 if event.key == K_a:
                     xc -= 2
                 if event.key == K_s:
-                    yc -= 2
+                    yc += 2
                 if event.key == K_d:
                     xc += 2
                     
         x += xc
         y+= yc
         Chr( x, y)
-        pygame.display.update()
-        timer.tick(30)
+        
             
    
 game()
