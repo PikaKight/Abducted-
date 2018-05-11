@@ -1,6 +1,5 @@
-import pygame
+import pygame, time
 from pygame.locals import*
-import time
 
 pygame.init()
 
@@ -126,26 +125,26 @@ def Cchoice():
 def story(a):
     global char
     char = 0
-    text("Greeting Player, I am  ", 100, 75, 1100, 100, 50)
+    text("Greeting Player, I am  ", 100, 75, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
     pygame.time.delay(1000)
-    text("You are Trapped  ", 100, 175, 1100, 100, 50)
+    text("You are Trapped  ", 100, 175, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
     pygame.time.delay(1000)
-    text("To escape", 100, 275, 1100, 100, 50)
+    text("To escape", 100, 275, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
     pygame.time.delay(1000)
-    text("Listen to my intrustion carefully.", 100, 375, 1100, 100, 50)
+    text("Listen to my intrustion carefully.", 100, 375, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
     pygame.time.delay(1000)
-    text("Be cautious, you are about to wake up.", 100, 475, 1100, 100, 50)
+    text("Be cautious, you are about to wake up.", 100, 475, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
-    text("Click space to continue -->", 100, 575, 1100, 100, 50)
+    text("Click space to continue -->", 100, 575, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
     
@@ -160,11 +159,11 @@ def story(a):
                     if event.key == pygame.K_SPACE:
                         screen.fill(colr)
                         pygame.time.delay(1000)
-                        text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
+                        text("You hear people talking . . . ", 100, 75, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(1000)
-                        text("He's been asleep for a while now", 100, 175, 1100, 100, 50)
+                        text("He's been asleep for a while now", 100, 175, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(1000)
@@ -181,11 +180,11 @@ def story(a):
                     if event.key == pygame.K_SPACE:
                         screen.fill(colr)
                         pygame.time.delay(1000)
-                        text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
+                        text("You hear people talking . . . ", 100, 75, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(1000)
-                        text("She's been asleep for a while now", 100, 175, 1100, 100, 50)
+                        text("She's been asleep for a while now", 100, 175, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(1000)
@@ -202,11 +201,11 @@ def story(a):
                     if event.key == pygame.K_SPACE:
                         screen.fill(colr)
                         pygame.time.delay(1000)
-                        text("You hear people talking . . . ", 100, 75, 1100, 100, 50)
+                        text("You hear people talking . . . ", 100, 75, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(1000)
-                        text("They've been asleep for a while now", 100, 175, 1100, 100, 50)
+                        text("They've been asleep for a while now", 100, 175, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(1000)
@@ -221,7 +220,7 @@ def Chr( x, y):
 
 def tutorial():
        screen.fill(colr)
-       pygame.draw.rect(screen, recc, [50, 50, 1100, 600], 5)
+       pygame.draw.rect(screen, recc, [25, 25, 1230, 630])
        pygame.display.flip()
        movement()
 
@@ -252,11 +251,12 @@ def movement():
                 if event.key == K_s:
                     yc = 0
                 if event.key == K_d:
-                    xc = 0        
+                    xc = 0
+                    
         x += xc
         y+= yc
         screen.fill(colr)
-        pygame.draw.rect(screen, recc, [50,50,1100, 600], 5)
+        pygame.draw.rect(screen, recc, [25,25,1230, 630])
         Chr( x, y)
         pygame.display.update()
         timer.tick(30)
