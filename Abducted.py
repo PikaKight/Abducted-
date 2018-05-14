@@ -236,13 +236,13 @@ def movement():
                 start = False
             if event.type == pygame.KEYDOWN:
                 if event.key == K_w:
-                    yc -= 3
+                    yc -= 5
                 if event.key == K_a:
-                    xc -= 3
+                    xc -= 5
                 if event.key == K_s:
-                    yc += 3
+                    yc += 5
                 if event.key == K_d:
-                    xc += 3
+                    xc += 5
             if event.type == pygame.KEYUP:
                 if event.key == K_w:
                     yc = 0
@@ -258,6 +258,14 @@ def movement():
         screen.fill(colr)
         pygame.draw.rect(screen, recc, [25,25,1230, 630])
         Chr( x, y)
+        if x <= 34:
+            x += 5
+        if  x >= 1180:
+            x -= 5
+        if  y <= 30:
+            y += 5
+        if  y >= 570:
+            y -= 5        
         pygame.display.update()
         timer.tick(30)
 
