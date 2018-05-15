@@ -36,7 +36,9 @@ def button(msg, x, y, w, h, sc, hc, a): #creates a button the works and has word
     if x+w > mouse[0] > x and y+h > mouse[1] > y: # check is the mouse is with in the range of the button 
         pygame.draw.rect(screen, hc,(x,y,w,h)) #makes the button highlighted
         if click[0] == 1 and a == 1: #check if the left button is click
-                Startaction() #calls for this action
+            Startaction() #calls for this action
+        if click[0] == 1 and a == 2:
+            Load()
     else:
         pygame.draw.rect(screen, sc, (x,y,w,h)) #or it would put back the button back to normal
 
@@ -56,6 +58,7 @@ def game(): #this is for the game to run
 
         screen.fill(colr) #makes the screen black
         button("Start", 465,350,350,100, sc, hc, 1) #creates a start button
+        button("Load", 465,460,350,100, sc, hc, 2) #load button
         pygame.display.flip() #puts everything on to the display, which lets the user see it
         pygame.display.update()#updates the screen depending on the tick time
         timer.tick(15)#gives a tick time of 15 nino secons 
@@ -81,6 +84,19 @@ def Startaction(): #this lets the user click on the start button
                     text("Choose a character using 1, 2 or 3, Don't use Numb Pad", 50,500,1080,150, 50) #another text that tells the user what to do
                     pygame.display.flip()
                     Cchoice() #calls for the Cchoice functions
+
+def Load():
+    start = True
+    while start:
+     for event in pygame.event.get():
+         if event.type == pygame.QUIT:
+             start = False
+         if event.type == pygame.MOUSEBUTTONDOWN:#interagative button
+             if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 465 and mouse[1] < 565): #if within range, then fill the screen black and do the load screen
+                    screen.fill(colr)
+                    pygame.draw.rect(screen, recc, [100, 50, 600, 200], 5)
+                    pygame.display.flip()
+                    
                     
 def Cchoice(): # lets the user choose the character
     start = True
