@@ -95,7 +95,7 @@ def Cchoice():
                     timer.tick(10)
                     pygame.time.delay(250)
                     screen.fill(colr)
-                    story("M")
+                    story("F")
                     pygame.display.update()
                     timer.tick(60)
                     start = False
@@ -106,7 +106,7 @@ def Cchoice():
                     timer.tick(10)
                     pygame.time.delay(250)
                     screen.fill(colr)
-                    story("F")
+                    story("M")
                     pygame.display.update()
                     timer.tick(10)
                     start = False
@@ -149,7 +149,7 @@ def story(a):
     timer.tick(30)
     
     if a == "M":
-        char = 1
+        char = 2
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -170,7 +170,7 @@ def story(a):
                         tutorial()
 
     if a == "F":
-        char = 2
+        char = 1
         keypress = True
         while keypress:
             for event in pygame.event.get():
@@ -212,7 +212,7 @@ def story(a):
                         tutorial()
 
 def Chr( x, y):
-    if char == 2:
+    if char == 1:
      Chrct = pygame.image.load('Girl drawing Larger.png')
      screen.blit(Chrct, (x, y))
      pygame.display.update()
@@ -260,9 +260,9 @@ def movement():
         Chr( x, y)
         if x <= 34:
             x += 5
-        if  x >= 1180:
+        if  x >= 1170:
             x -= 5
-        if  y <= 30:
+        if  y <= 20:
             y += 5
         if  y >= 570:
             y -= 5        
