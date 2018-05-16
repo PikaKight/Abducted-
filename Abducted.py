@@ -78,7 +78,12 @@ def Startaction(): #this lets the user click on the start button
                     timer.tick(30) #updates the screen with a text to tell the user to not click the screen
                     pygame.time.delay(1500) #puts the code on  pause for a bit of time
                     screen.fill(colr)
-                    pygame.draw.rect(screen, recc,[100,50,335,400],5) #Draws rectangles on the screen 
+                    pygame.draw.rect(screen, recc,[100,50,335,400],5) #Draws rectangles on the screen
+                    global ChrF
+                    ChrF = pygame.image.load('Character - GirlV2.png')
+                    screen.blit(ChrF, (100, 50))
+                    pygame.display.update()
+                    timer.tick(30)
                     pygame.draw.rect(screen, recc,[470,50,335,400],5)
                     pygame.draw.rect(screen, recc,[840,50,335,400],5)
                     text("Choose a character using 1, 2 or 3, Don't use Numb Pad", 50,500,1080,150, 50) #another text that tells the user what to do
@@ -106,7 +111,8 @@ def Cchoice(): # lets the user choose the character
                 start = False
             if event.type == pygame.KEYDOWN:# check if the the keyboard key is pressed
                 if event.key == pygame.K_1: #check if the user press 1 
-                    pygame.draw.rect(screen, hc,[100,50,335,400],5) #highlighs the box and let it stay there for a short amount of time 
+                    pygame.draw.rect(screen, hc,[100,50,335,400],5) #highlighs the box and let it stay there for a short amount of time
+                    screen.blit(ChrF, (100, 50))
                     pygame.display.update()
                     timer.tick(10)
                     pygame.time.delay(250)
