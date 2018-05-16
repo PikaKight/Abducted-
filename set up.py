@@ -5,6 +5,6 @@ executables = [cx_Freeze.Executable("Abducted.py)"]
 cx_Freeze.setup(
         name = "Abducted",
         options={"build_exe": {"packages":["pygame"],
-                                                 "include_files":["Girl drawing Larger.pgn", "Character - GirlV2.png"]}},
+                                                 "included_files":["Girl drawing Larger.pgn", "Character - GirlV2.png"]}},
         executables = executables
         )
