@@ -17,6 +17,16 @@ hc = (100, 255, 150) #highlight colour
 
 timer = pygame.time.Clock() #lets us use the clock more easily
 
+starttime = time.time()
+print (starttime)
+def StopWatch():
+    while start:
+        watch = 0
+        watch += 1
+        screen.blit(watch, (10, 10))
+        pygame.display.update()
+        timer.tick(1000)
+
 def textObj(msg, text): #this function mainly handles what colour the text has 
     textcolour =  textfont.render(msg, 1,  recc)
     return textcolour, textcolour.get_rect()
@@ -78,14 +88,13 @@ def Startaction(): #this lets the user click on the start button
                     timer.tick(30) #updates the screen with a text to tell the user to not click the screen
                     pygame.time.delay(1500) #puts the code on  pause for a bit of time
                     screen.fill(colr)
-                    pygame.draw.rect(screen, recc,[100,50,335,400],5) #Draws rectangles on the screen
-                    global ChrF
-                    ChrF = pygame.image.load('Character - GirlV2.png')
-                    screen.blit(ChrF, (100, 50))
+                    pygame.draw.rect(screen, recc,[250,50,335,400],5) #Draws rectangles on the screen
+                    global ChrF # turns the ChrF var into a global var that other functions can use
+                    ChrF = pygame.image.load('Character - GirlV2.png') #Loads the image of female card 
+                    screen.blit(ChrF, (250, 50))
                     pygame.display.update()
                     timer.tick(30)
-                    pygame.draw.rect(screen, recc,[470,50,335,400],5)
-                    pygame.draw.rect(screen, recc,[840,50,335,400],5)
+                    pygame.draw.rect(screen, recc,[620,50,335,400],5)
                     text("Choose a character using 1, 2 or 3, Don't use Numb Pad", 50,500,1080,150, 50) #another text that tells the user what to do
                     pygame.display.flip()
                     Cchoice() #calls for the Cchoice functions
@@ -111,7 +120,7 @@ def Cchoice(): # lets the user choose the character
                 start = False
             if event.type == pygame.KEYDOWN:# check if the the keyboard key is pressed
                 if event.key == pygame.K_1: #check if the user press 1 
-                    pygame.draw.rect(screen, hc,[100,50,335,400],5) #highlighs the box and let it stay there for a short amount of time
+                    pygame.draw.rect(screen, hc,[300,50,335,400],5) #highlighs the box and let it stay there for a short amount of time
                     screen.blit(ChrF, (100, 50))
                     pygame.display.update()
                     timer.tick(10)
@@ -123,23 +132,12 @@ def Cchoice(): # lets the user choose the character
                     start = False
 
                 if event.key == pygame.K_2: #check if the user pressed 2 and calls for the male story
-                    pygame.draw.rect(screen, hc, [470,50,335,400], 5)
+                    pygame.draw.rect(screen, hc, [670,50,335,400], 5)
                     pygame.display.update()
                     timer.tick(10)
                     pygame.time.delay(250)
                     screen.fill(colr)
                     story("M")
-                    pygame.display.update()
-                    timer.tick(10)
-                    start = False
-                    
-                if event.key == pygame.K_3: #check if the user pressed 3 and plays the other story
-                    pygame.draw.rect(screen, hc,[840,50,335,400],5)
-                    pygame.display.update()
-                    timer.tick(10)
-                    pygame.time.delay(250)
-                    screen.fill(colr)
-                    story("O")
                     pygame.display.update()
                     timer.tick(10)
                     start = False
@@ -207,27 +205,6 @@ def story(a): #story function
                         timer.tick(30)
                         pygame.time.delay(1000)
                         text("She's been asleep for a while now", 100, 175, 1100, 100, 36)
-                        pygame.display.update()
-                        timer.tick(30)
-                        pygame.time.delay(1000)
-                        tutorial()
-
-    if a == "O": #other's story
-        char = 3
-        keypress = True
-        while keypress:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    keypress = False
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        screen.fill(colr)
-                        pygame.time.delay(1000)
-                        text("You hear people talking . . . ", 100, 75, 1100, 100, 36)
-                        pygame.display.update()
-                        timer.tick(30)
-                        pygame.time.delay(1000)
-                        text("They've been asleep for a while now", 100, 175, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(1000)
