@@ -15,17 +15,7 @@ sc = (100, 250 , 0) #start button colour
 
 hc = (100, 255, 150) #highlight colour
 
-timer = pygame.time.Clock() #lets us use the clock more easily
-
-starttime = time.time()
-print (starttime)
-def StopWatch():
-    while start:
-        watch = 0
-        watch += 1
-        screen.blit(watch, (10, 10))
-        pygame.display.update()
-        timer.tick(1000)
+timer = pygame.time.Clock() #lets us use the clock more
 
 def textObj(msg, text): #this function mainly handles what colour the text has 
     textcolour =  textfont.render(msg, 1,  recc)
@@ -120,8 +110,8 @@ def Cchoice(): # lets the user choose the character
                 start = False
             if event.type == pygame.KEYDOWN:# check if the the keyboard key is pressed
                 if event.key == pygame.K_1: #check if the user press 1 
-                    pygame.draw.rect(screen, hc,[300,50,335,400],5) #highlighs the box and let it stay there for a short amount of time
-                    screen.blit(ChrF, (100, 50))
+                    pygame.draw.rect(screen, hc,[250,50,335,400],5) #highlighs the box and let it stay there for a short amount of time
+                    screen.blit(ChrF, (250, 50))
                     pygame.display.update()
                     timer.tick(10)
                     pygame.time.delay(250)
@@ -277,6 +267,7 @@ def movement(): #this the movement
             y -= 5        
         pygame.display.update()
         timer.tick(30)
-
+        timeP = timer.get_time()
+        print (timeP)
 game()
 pygame.quit()   
