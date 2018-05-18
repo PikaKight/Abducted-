@@ -220,6 +220,7 @@ def Chr( x, y): #this is to load the character pic
 def tutorial(): #starts the game and places the setting
        screen.fill(colr)
        pygame.draw.rect(screen, recc, [25, 25, 1230, 630])
+       pygame.draw.rect(screen, hc, [25,25, 650, 630]) 
        pygame.display.flip()
        movement()
 
@@ -251,12 +252,11 @@ def movement(): #this the movement
                     yc = 0
                 if event.key == K_d:
                     xc = 0
+                if event.key == K_e:
+                    print ("Key pick up")
                     
         x += xc #makes the character move by changing the location on the x and y axis
         y+= yc
-        screen.fill(colr) #updates the character location and the back ground
-        pygame.draw.rect(screen, recc, [25,25,1230, 630]) 
-        Chr( x, y)
         if x <= 34: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
             x += 5
         if  x >= 1170:
@@ -264,10 +264,14 @@ def movement(): #this the movement
         if  y <= 20:
             y += 5
         if  y >= 570:
-            y -= 5        
+            y -= 5      
+        screen.fill(sc) #updates the character location and the back ground
+        pygame.draw.rect(screen, recc, [25,25,1230, 630])
+        pygame.draw.rect(screen, hc, [25,25, 650, 630])
+        pygame.draw.rect(screen, colr, [25,25, 650, 630], 10) 
+        Chr( x, y)
         pygame.display.update()
         timer.tick(30)
-        timeP = timer.get_time()
-        print (timeP)
+        
 game()
 pygame.quit()   
