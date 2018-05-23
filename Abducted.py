@@ -225,8 +225,8 @@ def tutorial(): #starts the game and places the setting
        movement()
 
 def movement(): #this the movement 
-    x = 100 #location of the x and y axis of the character
-    y = 100
+    x = 615 #location of the x and y axis of the character
+    y = 305
     xc = 0 #this is for the movement of the character
     yc = 0
     start = True
@@ -257,18 +257,19 @@ def movement(): #this the movement
                     
         x += xc #makes the character move by changing the location on the x and y axis
         y+= yc
-        if x <= 34: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
+        if x <= 300: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
             x += 5
-        if  x >= 1170:
+        if  x >= 900:
             x -= 5
         if  y <= 20:
             y += 5
-        if  y >= 570:
+        if  y >= 560:
             y -= 5      
-        screen.fill(sc) #updates the character location and the back ground
+        screen.fill(colr) #updates the character location and the back ground
         pygame.draw.rect(screen, recc, [25,25,1230, 630])
-        pygame.draw.rect(screen, hc, [25,25, 650, 630])
-        pygame.draw.rect(screen, colr, [25,25, 650, 630], 10) 
+        pygame.draw.rect(screen, hc, [315,35, 630, 610])
+        pygame.draw.rect(screen, colr, [305,25, 650, 630], 15)
+        pygame.draw.rect(screen, colr, [945, 265, 310, 200])
         Chr( x, y)
         pygame.display.update()
         timer.tick(30)
