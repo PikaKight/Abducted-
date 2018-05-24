@@ -205,28 +205,44 @@ def Chr( x, y): #this is to load the character pic
      Chrct = pygame.image.load('Girl drawing Larger.png') #loads the female character
      screen.blit(Chrct, (x, y))
      pygame.display.update()
-     timer.tick(30)
+     timer.tick(60)
     if char == 2: #male
      Chrct = pygame.image.load('Girl drawing Larger.png') #loads the male character
      screen.blit(Chrct, (x, y))
      pygame.display.update()
-     timer.tick(30)
+     timer.tick(60)
     if char == 3: #other
      Chrct = pygame.image.load('Girl drawing Larger.png') #loads the other character
      screen.blit(Chrct, (x, y))
      pygame.display.update()
-     timer.tick(30)
+     timer.tick(60)
+     
+def key(w, v):
+    key = pygame.image.load('Lock_Large.png')
+    screen.blit(key, (w, v))
+    pygame.display.flip()
 
+def roomS(a, b):
+    startroom = pygame.image.load('Starting Room.png')
+    screen.blit( startroom, (a, b))
+    pygame.display.flip()
+        
 def tutorial(): #starts the game and places the setting
        screen.fill(colr)
-       pygame.draw.rect(screen, recc, [25, 25, 1230, 630])
-       pygame.draw.rect(screen, hc, [25,25, 650, 630]) 
+       pygame.draw.rect(screen, colr, [25,25,1230, 630])
+       roomS(315,35)
+       pygame.draw.rect(screen, sc, [945, 220, 335, 250])
+       Chr( 615, 259)
+       text("Use WASD to move", 100 , 0 , 100, 50, 36)
        pygame.display.flip()
-       movement()
+       pygame.time.delay(5000)
+       movement()    
 
 def movement(): #this the movement 
     x = 615 #location of the x and y axis of the character
-    y = 305
+    y = 259
+    w = 730
+    v = 460
     xc = 0 #this is for the movement of the character
     yc = 0
     start = True
@@ -259,7 +275,7 @@ def movement(): #this the movement
         y+= yc
         if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
             x += 7
-        if  x >= 865:
+        if  x >= 830:
             x -= 7
         if  y <= 20:
             y += 7
@@ -267,11 +283,12 @@ def movement(): #this the movement
             y -= 7     
         screen.fill(colr) #updates the character location and the back ground
         pygame.draw.rect(screen, colr, [25,25,1230, 630])
-        pygame.draw.rect(screen, hc, [315,35, 630, 610])
-        pygame.draw.rect(screen, sc, [945, 265, 310, 170])
+        pygame.draw.rect(screen, sc, [945, 220, 335, 250])
+        roomS(315,35)
         Chr( x, y)
+        key(w,v)
         pygame.display.update()
-        timer.tick(30)
+        timer.tick(60)
         
 game()
 pygame.quit()   
