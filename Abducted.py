@@ -85,7 +85,7 @@ def Startaction(): #this lets the user click on the start button
                     pygame.display.update()
                     timer.tick(30)
                     pygame.draw.rect(screen, recc,[620,50,335,400],5)
-                    text("Choose a character using 1, 2 or 3, Don't use Numb Pad", 50,500,1080,150, 50) #another text that tells the user what to do
+                    text("Choose a character using 1 or 2, Don't use Numb Pad", 50,500,1080,150, 50) #another text that tells the user what to do
                     pygame.display.flip()
                     Cchoice() #calls for the Cchoice functions
 
@@ -236,13 +236,13 @@ def movement(): #this the movement
                 start = False
             if event.type == pygame.KEYDOWN:
                 if event.key == K_w: #when the play presses w, a, s, or d the character will move up(w) 5, left(a) 5, down(s) 5, and right(d) 5
-                    yc -= 5
+                    yc -= 7
                 if event.key == K_a:
-                    xc -= 5
+                    xc -= 7
                 if event.key == K_s:
-                    yc += 5
+                    yc += 7
                 if event.key == K_d:
-                    xc += 5
+                    xc += 7
             if event.type == pygame.KEYUP: #when the user relase the key the character stops moving
                 if event.key == K_w:
                     yc = 0
@@ -257,19 +257,18 @@ def movement(): #this the movement
                     
         x += xc #makes the character move by changing the location on the x and y axis
         y+= yc
-        if x <= 300: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
-            x += 5
-        if  x >= 900:
-            x -= 5
+        if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
+            x += 7
+        if  x >= 865:
+            x -= 7
         if  y <= 20:
-            y += 5
+            y += 7
         if  y >= 560:
-            y -= 5      
+            y -= 7     
         screen.fill(colr) #updates the character location and the back ground
-        pygame.draw.rect(screen, recc, [25,25,1230, 630])
+        pygame.draw.rect(screen, colr, [25,25,1230, 630])
         pygame.draw.rect(screen, hc, [315,35, 630, 610])
-        pygame.draw.rect(screen, colr, [305,25, 650, 630], 15)
-        pygame.draw.rect(screen, colr, [945, 265, 310, 200])
+        pygame.draw.rect(screen, sc, [945, 265, 310, 170])
         Chr( x, y)
         pygame.display.update()
         timer.tick(30)
