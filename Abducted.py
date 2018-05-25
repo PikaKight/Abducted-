@@ -222,13 +222,11 @@ def Chr( x, y): #this is to load the character pic
 def key(w, v):
     key = pygame.image.load('Lock_Large.png')
     screen.blit(key, (w, v))
-    pygame.display.flip()
-
         
 def tutorial(): #starts the game and places the setting
        screen.fill(colr)
        pygame.draw.rect(screen, colr, [25,25,1230, 630])
-       screen.blit( startroom, (315, 35)
+       screen.blit( startroom, (315, 35))
        pygame.draw.rect(screen, sc, [945, 220, 335, 250])
        Chr( 615, 259)
        text("Use WASD to move", 100 , 0 , 100, 50, 36)
@@ -239,8 +237,8 @@ def tutorial(): #starts the game and places the setting
 def movement(): #this the movement 
     x = 615 #location of the x and y axis of the character
     y = 259
-    w = 730
-    v = 460
+    w = 830
+    v = 510
     xc = 0 #this is for the movement of the character
     yc = 0
     start = True
@@ -280,12 +278,11 @@ def movement(): #this the movement
         if  y >= 560:
             y -= 7     
         screen.fill(colr) #updates the character location and the back ground
-        screen.blit( startroom, (315, 35)
         pygame.draw.rect(screen, sc, [945, 220, 335, 250])
+        screen.blit( startroom, (315, 35))
         Chr( x, y)
         key(w,v)
         pygame.display.flip()
-     
         
 game()
 pygame.quit()   
