@@ -282,13 +282,12 @@ def movement(): #this the movement
         if  y >= 560:
             y -= 7     
         screen.fill(colr) #updates the character location and the back ground
-        pygame.draw.rect(screen, colr, [25,25,1230, 630])
-        pygame.draw.rect(screen, sc, [945, 220, 335, 250])
         roomS(315,35)
+        pygame.draw.rect(screen, sc, [945, 220, 335, 250])
         Chr( x, y)
         key(w,v)
-        pygame.display.update()
-        timer.tick(60)
+        pygame.display.flip()
+     
         
 game()
 pygame.quit()   
