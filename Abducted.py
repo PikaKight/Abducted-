@@ -5,6 +5,8 @@ pygame.init()
 
 screen = pygame.display.set_mode((1280,680)) #the screen size
 
+startroom = pygame.image.load('Starting Room.png')
+
 pygame.display.set_caption("Abducted")
 
 colr = (0,0,0) #Background colour
@@ -222,15 +224,11 @@ def key(w, v):
     screen.blit(key, (w, v))
     pygame.display.flip()
 
-def roomS(a, b):
-    startroom = pygame.image.load('Starting Room.png')
-    screen.blit( startroom, (a, b))
-    pygame.display.flip()
         
 def tutorial(): #starts the game and places the setting
        screen.fill(colr)
        pygame.draw.rect(screen, colr, [25,25,1230, 630])
-       roomS(315,35)
+       screen.blit( startroom, (315, 35)
        pygame.draw.rect(screen, sc, [945, 220, 335, 250])
        Chr( 615, 259)
        text("Use WASD to move", 100 , 0 , 100, 50, 36)
@@ -282,7 +280,7 @@ def movement(): #this the movement
         if  y >= 560:
             y -= 7     
         screen.fill(colr) #updates the character location and the back ground
-        roomS(315,35)
+        screen.blit( startroom, (315, 35)
         pygame.draw.rect(screen, sc, [945, 220, 335, 250])
         Chr( x, y)
         key(w,v)
