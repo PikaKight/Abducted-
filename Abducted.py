@@ -6,6 +6,8 @@ pygame.init()
 screen = pygame.display.set_mode((1280,680)) #the screen size
 
 startroom = pygame.image.load('Starting Room.png')
+key = pygame.image.load('Lock_Large.png')
+corridor = pygame.image.load('Corridor.png')
 
 pygame.display.set_caption("Abducted")
 
@@ -213,32 +215,21 @@ def Chr( x, y): #this is to load the character pic
      screen.blit(Chrct, (x, y))
      pygame.display.update()
      timer.tick(60)
-    if char == 3: #other
-     Chrct = pygame.image.load('Girl drawing Larger.png') #loads the other character
-     screen.blit(Chrct, (x, y))
-     pygame.display.update()
-     timer.tick(60)
-     
-def key(w, v):
-    key = pygame.image.load('Lock_Large.png')
-    screen.blit(key, (w, v))
-        
+
 def tutorial(): #starts the game and places the setting
        screen.fill(colr)
-       pygame.draw.rect(screen, colr, [25,25,1230, 630])
        screen.blit( startroom, (315, 35))
-       pygame.draw.rect(screen, sc, [945, 220, 335, 250])
+       screen.blit( corridor, (945, 220)) 
        Chr( 615, 259)
        text("Use WASD to move", 100 , 0 , 100, 50, 36)
        pygame.display.flip()
        pygame.time.delay(5000)
+       pygame.display.flip()
        movement()    
 
 def movement(): #this the movement 
     x = 615 #location of the x and y axis of the character
     y = 259
-    w = 830
-    v = 510
     xc = 0 #this is for the movement of the character
     yc = 0
     start = True
@@ -269,20 +260,21 @@ def movement(): #this the movement
                     
         x += xc #makes the character move by changing the location on the x and y axis
         y+= yc
+        screen.fill(colr)
+        screen.blit( corridor, (945, 220)) 
+        screen.blit( startroom, (315, 35))   
+        Chr( x, y)
+        screen.blit(key, (830, 510))
+        pygame.display.flip()
         if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
             x += 7
         if  x >= 830:
             x -= 7
-        if  y <= 20:
+        if  y <= 180:
             y += 7
-        if  y >= 560:
-            y -= 7     
-        screen.fill(colr) #updates the character location and the back ground
-        pygame.draw.rect(screen, sc, [945, 220, 335, 250])
-        screen.blit( startroom, (315, 35))
-        Chr( x, y)
-        key(w,v)
-        pygame.display.flip()
+        if  y >= 500:
+            y -= 7
         
+       
 game()
 pygame.quit()   
