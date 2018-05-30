@@ -228,6 +228,7 @@ def tutorial(): #starts the game and places the setting
        movement()    
 
 def movement(): #this the movement 
+    bound = 0
     x = 615 #location of the x and y axis of the character
     y = 259
     xc = 0 #this is for the movement of the character
@@ -255,25 +256,46 @@ def movement(): #this the movement
                     yc = 0
                 if event.key == K_d:
                     xc = 0
-                if event.key == K_e:
-                    print ("Key pick up")
                     
         x += xc #makes the character move by changing the location on the x and y axis
         y+= yc
+
+        if x  > 810 and x  < 910 and y > 480 and y  < 600 and bound == 0:
+            bound +=1
+            print ("unbound")
+            
+        if bound == 0:
+            if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
+                x += 7
+            if  x >= 830:
+                x -= 7
+            if  y <= 180:
+                y += 7
+            if  y >= 500:
+                y -= 7
+        if bound >= 1:
+            if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
+                x += 7
+            if x >= 830 and y < 220 and y > 470:
+                if y < 220:
+                    y += 7
+                elif y > 470:
+                    y -= 14
+            if x >= 830 and y >470:
+                x -=7
+            if  y <= 180:
+                y += 7
+            if  y >= 500:
+                y -= 7
+            
         screen.fill(colr)
         screen.blit( corridor, (945, 220)) 
         screen.blit( startroom, (315, 35))   
         Chr( x, y)
-        screen.blit(key, (830, 510))
+        screen.blit(key, (820, 510))
+        pygame.draw.rect(screen, sc, [820, 510, 80, 90], 5)
         pygame.display.flip()
-        if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
-            x += 7
-        if  x >= 830:
-            x -= 7
-        if  y <= 180:
-            y += 7
-        if  y >= 500:
-            y -= 7
+        
         
        
 game()
