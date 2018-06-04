@@ -8,6 +8,7 @@ screen = pygame.display.set_mode((1280,680)) #the screen size
 startroom = pygame.image.load('Starting Room.png')
 key = pygame.image.load('Lock_Large.png')
 corridor = pygame.image.load('Corridor.png')
+#corridor2 = pygame.image.load('Corridor # 2.png')
 
 pygame.display.set_caption("Abducted")
 
@@ -75,7 +76,7 @@ def Startaction(): #this lets the user click on the start button
                start = False
             if event.type == pygame.MOUSEBUTTONDOWN:#interagative button
                 if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 355 and mouse[1] < 445):#The range of which the mouse clicks 
-                    print ("Hello") #just there to check if it works and still on the screen
+                    print ("Hello, ") #just there to check if it works and still on the screen
                     screen.fill(colr)
                     pygame.draw.rect(screen, recc,[250,50,335,400],5) #Draws rectangles on the screen
                     global ChrF # turns the ChrF var into a global var that other functions can use
@@ -108,7 +109,8 @@ def Cchoice(): # lets the user choose the character
             if event.type == pygame.QUIT:
                 start = False
             if event.type == pygame.KEYDOWN:# check if the the keyboard key is pressed
-                if event.key == pygame.K_1: #check if the user press 1 
+                if event.key == pygame.K_1: #check if the user press 1
+                    print ("I'm your MC, I won't die soon (HOPEFULLY).")
                     pygame.draw.rect(screen, hc,[250,50,335,400],5) #highlighs the box and let it stay there for a short amount of time
                     screen.blit(ChrF, (250, 50))
                     pygame.display.update()
@@ -121,6 +123,7 @@ def Cchoice(): # lets the user choose the character
                     start = False
 
                 if event.key == pygame.K_2: #check if the user pressed 2 and calls for the male story
+                    print ("I'm your MC, I won't die soon (HOPEFULLY).")
                     pygame.draw.rect(screen, hc, [670,50,335,400], 5)
                     pygame.display.update()
                     timer.tick(10)
@@ -218,8 +221,7 @@ def tutorial(): #starts the game and places the setting
        Chr( 615, 259)
        text("Use WASD to move", 100 , 0 , 100, 50, 36)
        pygame.display.flip()
-       pygame.time.delay(5000)
-       pygame.display.flip()
+       pygame.time.delay(2500)
        movement()    
 
 def movement(): #this the movement 
@@ -258,7 +260,7 @@ def movement(): #this the movement
 
         if x  > 810 and x  < 910 and y > 480 and y  < 600 and bound == 0:
             bound +=1
-            print ("unbound")
+            print ("You are unbound!")
 
         if x >= 1280:
             x = 35
@@ -307,7 +309,8 @@ def movement(): #this the movement
         if bound <= 1: 
             screen.fill(colr)
             screen.blit( corridor, (945, 220)) 
-            screen.blit( startroom, (315, 35))   
+            screen.blit( startroom, (315, 35))
+            text("Go to the key to unlock the door", 200, 10, 100, 50, 36)
             Chr( x, y)
             screen.blit(key, (820, 510))
             pygame.draw.rect(screen, sc, [820, 510, 80, 90], 5)
@@ -315,7 +318,9 @@ def movement(): #this the movement
 
         if bound == 2:
             screen.fill(colr)
-            pygame.draw.rect(screen, recc, [35,220, 1100, 250])
+            pygame.draw.rect(screen, recc, [35,220, 1200, 250])
+            screen.blit( corridor, (35, 220)) 
+            pygame.draw.rect(screen, hc, [1235, 205, 45, 280])
             Chr( x, y)
             pygame.display.flip()
             
