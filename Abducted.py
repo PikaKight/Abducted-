@@ -259,6 +259,7 @@ def movement(): #this the movement
         if x  > 810 and x  < 910 and y > 480 and y  < 600 and bound == 0:
             bound +=1
             print ("unbound")
+
         if x >= 1280:
             x = 35
             bound = 2
@@ -266,6 +267,7 @@ def movement(): #this the movement
             pygame.draw.rect(screen, recc, [35,220, 1100, 250])
             Chr( 35, y)
             pygame.display.flip()
+
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
                 x += 7
@@ -275,6 +277,7 @@ def movement(): #this the movement
                 y += 7
             if  y >= 500:
                 y -= 7
+
         if bound == 1:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
                 x += 7
@@ -290,6 +293,7 @@ def movement(): #this the movement
                 y += 7
             if  y >= 500:
                 y -= 7
+
         if bound == 2:
             if x <= 35:
                 x += 7
@@ -299,6 +303,7 @@ def movement(): #this the movement
                 y += 7
             if y >= 345:
                 y -= 7
+
         if bound <= 1: 
             screen.fill(colr)
             screen.blit( corridor, (945, 220)) 
@@ -307,6 +312,7 @@ def movement(): #this the movement
             screen.blit(key, (820, 510))
             pygame.draw.rect(screen, sc, [820, 510, 80, 90], 5)
             pygame.display.flip()
+
         if bound == 2:
             screen.fill(colr)
             pygame.draw.rect(screen, recc, [35,220, 1100, 250])
