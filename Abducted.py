@@ -22,6 +22,8 @@ hc = (100, 255, 150) #highlight colour
 
 timer = pygame.time.Clock() #lets us use the clock more
 
+timer.tick(60)
+
 def textObj(msg, text): #this function mainly handles what colour the text has 
     textcolour =  textfont.render(msg, 1,  recc)
     return textcolour, textcolour.get_rect()
@@ -224,7 +226,7 @@ def tutorial(): #starts the game and places the setting
        pygame.time.delay(2500)
        movement()    
 
-def movement(): #this the movement 
+def movement(): #this the movement
     bound = 0
     if bound == 0:
         x = 615 #location of the x and y axis of the character
@@ -305,7 +307,7 @@ def movement(): #this the movement
                 y += 7
             if y >= 345:
                 y -= 7
-
+                
         if bound <= 1: 
             screen.fill(colr)
             screen.blit( corridor, (945, 220)) 
@@ -315,6 +317,7 @@ def movement(): #this the movement
             screen.blit(key, (820, 510))
             pygame.draw.rect(screen, sc, [820, 510, 80, 90], 5)
             pygame.display.flip()
+            timer.tick(60)
 
         if bound == 2:
             screen.fill(colr)
@@ -322,7 +325,9 @@ def movement(): #this the movement
             screen.blit( corridor, (35, 220)) 
             pygame.draw.rect(screen, hc, [1235, 205, 45, 280])
             Chr( x, y)
-            pygame.display.flip()
+            text("It seems this is the Boss Door. Go find the TWO Keys to unlock it.", 200, 50, 900, 100, 36)
+            pygame.display.update()
+            timer.tick(15)
             
 game()
 pygame.quit()   
