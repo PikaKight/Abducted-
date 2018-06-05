@@ -264,14 +264,19 @@ def movement(): #this the movement
             bound +=1
             print ("You are unbound!")
 
-        if x >= 1280:
+        if x >= 1280 and bound == 1:
             x = 35
             bound = 2
             screen.fill(colr)
             pygame.draw.rect(screen, recc, [35,220, 1100, 250])
             Chr( 35, y)
             pygame.display.flip()
-        
+
+        if x >= 1000 and bound == 2:
+            bound = 3
+            text("It seems this is the Boss Door. Go find the TWO Keys to unlock it.", 200, 50, 900, 100, 36)
+            pygame.display.flip()
+             
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
                 x += 7
@@ -307,6 +312,16 @@ def movement(): #this the movement
                 y += 7
             if y >= 345:
                 y -= 7
+
+        if bound == 3:
+            if x <= 35:
+                x += 7
+            if x >= 1100:
+                x -= 7
+            if y <= 230:
+                y += 7
+            if y >= 345:
+                y -= 7        
    
         if bound <= 1: 
             screen.fill(colr)
@@ -327,6 +342,16 @@ def movement(): #this the movement
             Chr( x, y)
             pygame.display.update()
             timer.tick(60)
+
+        if bound == 3:
+            screen.fill(colr)
+            pygame.draw.rect(screen, recc, [35,220, 1200, 250])
+            screen.blit( corridor, (35, 220)) 
+            pygame.draw.rect(screen, hc, [1235, 205, 45, 280])
+            Chr( x, y)
+            pygame.display.update()
+            timer.tick(60)
+        
             
 game()
 pygame.quit()   
