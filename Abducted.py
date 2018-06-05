@@ -23,11 +23,17 @@ hc = (100, 255, 150) #highlight colour
 timer = pygame.time.Clock() #lets us use the clock more
 
 timer.tick(60)
+ 
+font = pygame.font.Font(None, 25)
+
+frame_count = 0
+frame_rate = 60
+start_time = 0
 
 def textObj(msg, text): #this function mainly handles what colour the text has 
     textcolour =  textfont.render(msg, 1,  recc)
     return textcolour, textcolour.get_rect()
-
+    
 def text(msg, x, y, w, h, size): #this is the main function that creates the text and the position 
     global textfont
     textfont = pygame.font.SysFont('forte', size) #this is for the font of the text
@@ -56,6 +62,7 @@ def button(msg, x, y, w, h, sc, hc, a): #creates a button the works and has word
     screen.blit(textscreen, textrecc)
 
 def game(): #this is for the game to run
+    frame_count = 0
     global start
     start = True
     while start: # as long as start is true it will run continuously
@@ -66,6 +73,18 @@ def game(): #this is for the game to run
         screen.fill(colr) #makes the screen black
         button("Start", 465,350,350,100, sc, hc, 1) #creates a start button
         button("Load", 465,460,350,100, sc, hc, 2) #load button
+        total_seconds = frame_count // frame_rate
+        minutes = total_seconds // 60
+        seconds = total_seconds % 60
+        output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+        text = font.render(output_string, True, recc)
+        screen.blit(text, [250, 250])
+
+        total_seconds = start_time - (frame_count // frame_rate)
+        if total_seconds < 0:
+            total_seconds = 0
+        frame_count += 1
+        timer.tick(60)
         pygame.display.flip() #puts everything on to the display, which lets the user see it
         pygame.display.update()#updates the screen depending on the tick time
         timer.tick(15)#gives a tick time of 15 nino secons 
