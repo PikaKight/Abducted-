@@ -22,13 +22,13 @@ hc = (100, 255, 150) #highlight colour
 
 timer = pygame.time.Clock() #lets us use the clock more
 
-timer.tick(60)
+timer.tick(120)
  
 font = pygame.font.Font(None, 25)
 
 frame_count = 0
 frame_rate = 60
-start_time = 0
+start_time = 90
 
 def textObj(msg, text): #this function mainly handles what colour the text has 
     textcolour =  textfont.render(msg, 1,  recc)
