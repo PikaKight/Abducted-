@@ -8,7 +8,8 @@ screen = pygame.display.set_mode((1280,680)) #the screen size
 startroom = pygame.image.load('Starting Room.png')
 key = pygame.image.load('Lock_Large.png')
 corridor = pygame.image.load('Corridor.png')
-#corridor2 = pygame.image.load('Corridor # 2.png')
+closed = pygame.image.load('Closed door.png')
+opened = pygame.image.load('Open Door.png')
 
 pygame.display.set_caption("Abducted")
 
@@ -22,13 +23,13 @@ hc = (100, 255, 150) #highlight colour
 
 timer = pygame.time.Clock() #lets us use the clock more
 
-timer.tick(120)
+timer.tick(60)
  
 font = pygame.font.Font(None, 25)
 
 frame_count = 0
-frame_rate = 60
-start_time = 90
+frame_rate = 20
+start_time = 0
 
 def textObj(msg, text): #this function mainly handles what colour the text has 
     textcolour =  textfont.render(msg, 1,  recc)
@@ -62,7 +63,6 @@ def button(msg, x, y, w, h, sc, hc, a): #creates a button the works and has word
     screen.blit(textscreen, textrecc)
 
 def game(): #this is for the game to run
-    frame_count = 0
     global start
     start = True
     while start: # as long as start is true it will run continuously
@@ -73,24 +73,10 @@ def game(): #this is for the game to run
         screen.fill(colr) #makes the screen black
         button("Start", 465,350,350,100, sc, hc, 1) #creates a start button
         button("Load", 465,460,350,100, sc, hc, 2) #load button
-        total_seconds = frame_count // frame_rate
-        minutes = total_seconds // 60
-        seconds = total_seconds % 60
-        output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
-        text = font.render(output_string, True, recc)
-        screen.blit(text, [250, 250])
-
-        total_seconds = start_time - (frame_count // frame_rate)
-        if total_seconds < 0:
-            total_seconds = 0
-        frame_count += 1
-        timer.tick(60)
         pygame.display.flip() #puts everything on to the display, which lets the user see it
-        pygame.display.update()#updates the screen depending on the tick time
-        timer.tick(15)#gives a tick time of 15 nino secons 
  
 def Startaction(): #this lets the user click on the start button
-    start = True
+    start = True 
     while start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -101,11 +87,11 @@ def Startaction(): #this lets the user click on the start button
                     screen.fill(colr)
                     pygame.draw.rect(screen, recc,[250,50,335,400],5) #Draws rectangles on the screen
                     global ChrF # turns the ChrF var into a global var that other functions can use
-                    ChrF = pygame.image.load('Character - GirlV2.png') #Loads the image of female card 
+                    ChrF = pygame.image.load('Character - GirlV2.png') #Loads the image of female card
+                    ChrM = pygame.image.load('Character - Dude.png')
                     screen.blit(ChrF, (250, 50))
-                    pygame.display.update()
-                    timer.tick(30)
                     pygame.draw.rect(screen, recc,[620,50,335,400],5)
+                    screen.blit(ChrM, (620, 50))
                     text("Choose a character using 1 or 2, Don't use Numb Pad", 50,500,1080,150, 50) #another text that tells the user what to do
                     pygame.display.flip()
                     Cchoice() #calls for the Cchoice functions
@@ -145,7 +131,7 @@ def Cchoice(): # lets the user choose the character
 
                 if event.key == pygame.K_2: #check if the user pressed 2 and calls for the male story
                     print ("I'm your MC, I won't die soon (HOPEFULLY).")
-                    pygame.draw.rect(screen, hc, [670,50,335,400], 5)
+                    pygame.draw.rect(screen, hc, [620,50,335,400], 5)
                     pygame.display.update()
                     timer.tick(10)
                     pygame.time.delay(250)
@@ -230,22 +216,23 @@ def Chr( x, y): #this is to load the character pic
      pygame.display.update()
      timer.tick(60)
     if char == 2: #male
-     Chrct = pygame.image.load('Girl drawing Larger.png') #loads the male character
+     Chrct = pygame.image.load('Guy drawing Larger.png') #loads the male character
      screen.blit(Chrct, (x, y))
      pygame.display.update()
      timer.tick(60)
 
-def tutorial(): #starts the game and places the setting
-       screen.fill(colr)
-       screen.blit( startroom, (315, 35))
-       screen.blit( corridor, (945, 220)) 
-       Chr( 615, 259)
-       text("Use WASD to move", 100 , 0 , 100, 50, 36)
-       pygame.display.flip()
-       pygame.time.delay(2500)
-       movement()    
+def tutorial():#starts the game and places the setting
+     screen.fill(colr)
+     screen.blit( startroom, (315, 35))
+     screen.blit( corridor, (945, 220)) 
+     Chr( 615, 259)
+     text("Use WASD to move", 100 , 0 , 100, 50, 36)
+     pygame.display.flip()
+     pygame.time.delay(2500)
+     movement()    
 
 def movement(): #this the movement
+    frame_count = 0
     bound = 0
     if bound == 0:
         x = 615 #location of the x and y axis of the character
@@ -295,7 +282,21 @@ def movement(): #this the movement
             bound = 3
             text("It seems this is the Boss Door. Go find the TWO Keys to unlock it.", 200, 50, 900, 100, 36)
             pygame.display.flip()
-             
+    
+        if y <= 0 and x >= 840 and x <= 1090 and bound == 3:
+            bound = 4
+            screen.fill(colr)
+            pygame.draw.rect(screen, recc, [840, 680, 250, 220])
+            Chr( x, 645)
+            pygame.display.flip()
+
+        if y >= 680 and x >= 250 and x <= 500 and bound == 3:
+            bound = 5
+            screen.fill(colr)
+            pygame.draw.rect(screen, recc, [250,0,250,220])
+            Chr(x,0)
+            pygame.display.flip()
+
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
                 x += 7
@@ -336,15 +337,38 @@ def movement(): #this the movement
             if x <= 35:
                 x += 7
             if x >= 1100:
-                x -= 7
-            if y <= 230:
+              x -= 7                
+            if y <= 240:
                 y += 7
             if y >= 345:
                 y -= 7        
-   
-        if bound <= 1: 
+            if x >= 250 and x <= 500:
+                if y >= 335:                    
+                    y += 7
+            if x >= 840 and x <= 1090:
+                if y <= 250:
+                    y -= 7
+        
+        if bound == 4:
+            if x <= 840:
+                x += 7
+            if x >= 1090:
+                x -= 7
+                
+        if bound == 0: 
             screen.fill(colr)
-            screen.blit( corridor, (945, 220)) 
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit( corridor, (945, 220))
+            screen.blit( closed, (945, 220)) 
             screen.blit( startroom, (315, 35))
             text("Go to the key to unlock the door", 200, 10, 100, 50, 36)
             Chr( x, y)
@@ -352,8 +376,39 @@ def movement(): #this the movement
             pygame.display.flip()
             timer.tick(60)
 
+        if bound == 1:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit( corridor, (945, 220))
+            screen.blit( opened, (945, 220)) 
+            screen.blit( startroom, (315, 35))
+            text("Go to the key to unlock the door", 200, 10, 100, 50, 36)
+            Chr( x, y)
+            screen.blit(key, (820, 510))
+            pygame.display.flip()
+            timer.tick(60)
+                
         if bound == 2:
             screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
             text("It seems this is the Boss Door. Go find the TWO Keys to unlock it.", 200, 50, 900, 100, 36)
             pygame.draw.rect(screen, recc, [35,220, 1200, 250])
             screen.blit( corridor, (35, 220)) 
@@ -364,13 +419,41 @@ def movement(): #this the movement
 
         if bound == 3:
             screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
             pygame.draw.rect(screen, recc, [35,220, 1200, 250])
+            pygame.draw.rect(screen, recc, [840,0, 250, 220])
+            pygame.draw.rect(screen, recc, [250, 470, 250, 210])
             screen.blit( corridor, (35, 220)) 
             pygame.draw.rect(screen, hc, [1235, 205, 45, 280])
             Chr( x, y)
             pygame.display.update()
             timer.tick(60)
-        
+
+        if bound == 4:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            pygame.draw.rect(screen, recc, [840, 680, 250, 220])
+            Chr(x,y)
+            pygame.display.update()
+            timer.tick(60)
             
 game()
 pygame.quit()   
