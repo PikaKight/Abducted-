@@ -72,7 +72,6 @@ def game(): #this is for the game to run
 
         screen.fill(colr) #makes the screen black
         button("Start", 465,350,350,100, sc, hc, 1) #creates a start button
-        button("Load", 465,460,350,100, sc, hc, 2) #load button
         pygame.display.flip() #puts everything on to the display, which lets the user see it
  
 def Startaction(): #this lets the user click on the start button
@@ -94,20 +93,7 @@ def Startaction(): #this lets the user click on the start button
                     screen.blit(ChrM, (620, 50))
                     text("Choose a character using 1 or 2, Don't use Numb Pad", 50,500,1080,150, 50) #another text that tells the user what to do
                     pygame.display.flip()
-                    Cchoice() #calls for the Cchoice functions
-
-def Load():
-    start = True
-    while start:
-     for event in pygame.event.get():
-         if event.type == pygame.QUIT:
-             start = False
-         if event.type == pygame.MOUSEBUTTONDOWN:#interagative button
-             if (mouse[0] > 470 and mouse[0] < 810) and (mouse[1] > 465 and mouse[1] < 565): #if within range, then fill the screen black and do the load screen
-                    screen.fill(colr)
-                    pygame.draw.rect(screen, recc, [100, 50, 600, 200], 5)
-                    pygame.display.flip()
-                    
+                    Cchoice() #calls for the Cchoice functions               
                     
 def Cchoice(): # lets the user choose the character
     start = True
@@ -147,19 +133,19 @@ def story(a): #story function
     text("Greeting Player, I am  ", 100, 75, 1100, 100, 36) #general story 
     pygame.display.update()
     timer.tick(30)
-    pygame.time.delay(1000)
+    pygame.time.delay(500)
     text("You are Trapped  ", 100, 175, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
-    pygame.time.delay(1000)
+    pygame.time.delay(500)
     text("To escape", 100, 275, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
     pygame.time.delay(1000)
-    text("Listen to my intrustion carefully.", 100, 375, 1100, 100, 36)
+    text("Listen to my intructions carefully.", 100, 375, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
-    pygame.time.delay(1000)
+    pygame.time.delay(500)
     text("Be cautious, you are about to wake up.", 100, 475, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
@@ -181,11 +167,11 @@ def story(a): #story function
                         text("You hear people talking . . . ", 100, 75, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(500)
                         text("He's been asleep for a while now", 100, 175, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(500)
                         tutorial() #starts the actual game
 
     if a == "F":#female story
@@ -202,11 +188,11 @@ def story(a): #story function
                         text("You hear people talking . . . ", 100, 75, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(500)
                         text("She's been asleep for a while now", 100, 175, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(500)
                         tutorial()
 
 def Chr( x, y): #this is to load the character pic
@@ -228,7 +214,7 @@ def tutorial():#starts the game and places the setting
      Chr( 615, 259)
      text("Use WASD to move", 100 , 0 , 100, 50, 36)
      pygame.display.flip()
-     pygame.time.delay(2500)
+     pygame.time.delay(1500)
      movement()    
 
 def movement(): #this the movement
@@ -244,6 +230,9 @@ def movement(): #this the movement
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 start = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse = pygame.mouse.get_pos()
+                print (mouse)
             if event.type == pygame.KEYDOWN:
                 if event.key == K_w: #when the play presses w, a, s, or d the character will move up(w) 5, left(a) 5, down(s) 5, and right(d) 5
                     yc -= 7
@@ -283,20 +272,59 @@ def movement(): #this the movement
             text("It seems this is the Boss Door. Go find the TWO Keys to unlock it.", 200, 50, 900, 100, 36)
             pygame.display.flip()
     
-        if y <= 0 and x >= 840 and x <= 1090 and bound == 3:
+        if  x >= 840 and x <= 1090 and y <= 0 and bound == 3:
             bound = 4
+            y = 600
             screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
             pygame.draw.rect(screen, recc, [840, 680, 250, 220])
-            Chr( x, 645)
+            Chr(x, y)
             pygame.display.flip()
-
+            timer.tick(60)
+            
         if y >= 680 and x >= 250 and x <= 500 and bound == 3:
             bound = 5
+            y = 35
             screen.fill(colr)
-            pygame.draw.rect(screen, recc, [250,0,250,220])
-            Chr(x,0)
+            otal_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            pygame.draw.rect(screen, recc, [250,0,250,200])
+            pygame.draw.rect(screen, recc, [250, 200, 500, 100])
+            Chr(x, y)
             pygame.display.flip()
+            timer.tick(60)
 
+        if bound == 4 and y >= 680:
+            bound = 3
+            y = 50 
+            Chr( x, y)
+            pygame.display.flip()
+            timer.tick(60)
+            
+        if bound == 5 and y <= 0:
+            bound = 3
+            y = 600
+            Chr(x,y)
+            pygame.display.flip()
+            timer.tick(60)
+            
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
                 x += 7
@@ -328,7 +356,7 @@ def movement(): #this the movement
                 x += 7
             if x >= 1100:
                 x -= 7
-            if y <= 230:
+            if y <= 220:
                 y += 7
             if y >= 345:
                 y -= 7
@@ -338,21 +366,37 @@ def movement(): #this the movement
                 x += 7
             if x >= 1100:
               x -= 7                
-            if y <= 240:
+            if y <= 220:
                 y += 7
             if y >= 345:
                 y -= 7        
             if x >= 250 and x <= 500:
                 if y >= 335:                    
                     y += 7
-            if x >= 840 and x <= 1090:
+            if x >= 820 and x <= 1090:
                 if y <= 250:
                     y -= 7
+            if y <= 210 and x <= 835 and x >= 880:
+                if x <= 835:
+                    x += 7
+                if x >= 880:
+                    x -= 7
+            if y >= 465 and x <= 280 and x >= 300:
+                if x <= 260:
+                    x += 7
+                if x >= 300:
+                    x -= 7
         
         if bound == 4:
             if x <= 840:
                 x += 7
-            if x >= 1090:
+            if x >= 1080:
+                x -= 7
+                
+        if bound == 5:
+            if x <= 250:
+                x += 7
+            if x >= 490:
                 x -= 7
                 
         if bound == 0: 
@@ -360,7 +404,7 @@ def movement(): #this the movement
             total_seconds = frame_count // frame_rate
             minutes = total_seconds // 60
             seconds = total_seconds % 60
-            output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
             time = font.render(output_string, True, recc)
             screen.blit(time, [1100, 35])
             total_seconds = (frame_count // frame_rate)
@@ -381,7 +425,7 @@ def movement(): #this the movement
             total_seconds = frame_count // frame_rate
             minutes = total_seconds // 60
             seconds = total_seconds % 60
-            output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
             time = font.render(output_string, True, recc)
             screen.blit(time, [1100, 35])
             total_seconds = (frame_count // frame_rate)
@@ -402,7 +446,7 @@ def movement(): #this the movement
             total_seconds = frame_count // frame_rate
             minutes = total_seconds // 60
             seconds = total_seconds % 60
-            output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
             time = font.render(output_string, True, recc)
             screen.blit(time, [1100, 35])
             total_seconds = (frame_count // frame_rate)
@@ -422,7 +466,7 @@ def movement(): #this the movement
             total_seconds = frame_count // frame_rate
             minutes = total_seconds // 60
             seconds = total_seconds % 60
-            output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
             time = font.render(output_string, True, recc)
             screen.blit(time, [1100, 35])
             total_seconds = (frame_count // frame_rate)
@@ -431,7 +475,7 @@ def movement(): #this the movement
             frame_count += 1
             pygame.draw.rect(screen, recc, [35,220, 1200, 250])
             pygame.draw.rect(screen, recc, [840,0, 250, 220])
-            pygame.draw.rect(screen, recc, [250, 470, 250, 210])
+            pygame.draw.rect(screen, recc, [250, 470, 250, 220])
             screen.blit( corridor, (35, 220)) 
             pygame.draw.rect(screen, hc, [1235, 205, 45, 280])
             Chr( x, y)
@@ -443,7 +487,7 @@ def movement(): #this the movement
             total_seconds = frame_count // frame_rate
             minutes = total_seconds // 60
             seconds = total_seconds % 60
-            output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
             time = font.render(output_string, True, recc)
             screen.blit(time, [1100, 35])
             total_seconds = (frame_count // frame_rate)
@@ -452,8 +496,25 @@ def movement(): #this the movement
             frame_count += 1
             pygame.draw.rect(screen, recc, [840, 680, 250, 220])
             Chr(x,y)
-            pygame.display.update()
+            pygame.display.flip()
             timer.tick(60)
+
+        if bound == 5:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            pygame.draw.rect(screen, recc, [250,0,250,500])
+            pygame.draw.rect(screen, recc, [250, 200, 600, 300])
+            Chr(x, y)
+            pygame.display.flip()
             
 game()
 pygame.quit()   
