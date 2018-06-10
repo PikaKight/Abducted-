@@ -1,10 +1,14 @@
 import pygame, time
 from pygame.locals import*
 
+pygame.mixer.pre_init()
+pygame.mixer.init()
 pygame.init()
 
 screen = pygame.display.set_mode((1280,680)) #the screen size
 
+backmusic = pygame.mixer.music.load("Cloud_Wheels_Castle_Builder.mp3")
+dooropen = pygame.mixer.Sound("Wood_Door_Creak_Open.wav")
 startroom = pygame.image.load('Starting Room.png')
 key = pygame.image.load('Lock_Large.png')
 corridor = pygame.image.load('Corridor.png')
@@ -70,6 +74,8 @@ def game(): #this is for the game to run
             if event.type == pygame.QUIT: #if the user quit the game, this will in turn end the program    
                 start = False
 
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(0.5)
         screen.fill(colr) #makes the screen black
         button("Start", 465,350,350,100, sc, hc, 1) #creates a start button
         pygame.display.flip() #puts everything on to the display, which lets the user see it
@@ -256,6 +262,7 @@ def movement(): #this the movement
         y+= yc
 
         if x  > 810 and x  < 910 and y > 480 and y  < 600 and bound == 0:
+            pygame.mixer.Sound.play(dooropen)
             bound +=1
             print ("You are unbound!")
 
@@ -376,15 +383,15 @@ def movement(): #this the movement
             if x >= 820 and x <= 1090:
                 if y <= 250:
                     y -= 7
-            if y <= 210 and x <= 835 and x >= 880:
-                if x <= 835:
+            if y <= 210 and x <= 840 and x >= 959:
+                if x <= 835 and y <= 210:
                     x += 7
-                if x >= 880:
+                if x >= 880 and y <= 210:
                     x -= 7
-            if y >= 465 and x <= 280 and x >= 300:
-                if x <= 260:
+            if y >= 465 and x <= 250 and x >= 450:
+                if x <= 250:
                     x += 7
-                if x >= 300:
+                if x >= 450:
                     x -= 7
         
         if bound == 4:
