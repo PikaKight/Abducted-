@@ -15,6 +15,9 @@ corridor = pygame.image.load('Corridor.png')
 closed = pygame.image.load('Closed door.png')
 opened = pygame.image.load('Open Door.png')
 
+pygame.mixer.music.play(-1)
+pygame.mixer.music.set_volume(0.5)
+
 pygame.display.set_caption("Abducted")
 
 colr = (0,0,0) #Background colour
@@ -73,9 +76,7 @@ def game(): #this is for the game to run
         for event in pygame.event.get(): #gets the different events in pygame
             if event.type == pygame.QUIT: #if the user quit the game, this will in turn end the program    
                 start = False
-
-        pygame.mixer.music.play(-1)
-        pygame.mixer.music.set_volume(0.5)
+                
         screen.fill(colr) #makes the screen black
         button("Start", 465,350,350,100, sc, hc, 1) #creates a start button
         pygame.display.flip() #puts everything on to the display, which lets the user see it
@@ -313,7 +314,7 @@ def movement(): #this the movement
                 total_seconds = 0
             frame_count += 1
             pygame.draw.rect(screen, recc, [250,0,250,200])
-            pygame.draw.rect(screen, recc, [250, 200, 700, 400])
+            pygame.draw.rect(screen, recc, [250, 200, 630, 610])
             Chr(x, y)
             pygame.display.flip()
             timer.tick(60)
@@ -399,18 +400,23 @@ def movement(): #this the movement
                 x -= 7
                 
         if bound == 5:
-            if x <= 250:
+            if x <= 259:
                 x += 7
-            if x >= 490 and y < 200:
+            if  x >= 370:
                 x -= 7
-            if y >= 550:
+            if y >= 181 and x >= 259:
+                x += 7
+            if y <= 203 and x >= 483:
+                y += 7
+            if x >= 876:
+                x  -= 7
+            if y >= 504:
                 y -= 7
-            if y >= 200:
-                if x >= 250:
-                    x += 7
-                if x >= 950:
-                    x -= 7    
-
+            if x >= 608 and x <= 740:
+                if y <= 498:
+                    y += 7
+    
+           
         if bound == 0: 
             screen.fill(colr)
             total_seconds = frame_count // frame_rate
@@ -525,7 +531,8 @@ def movement(): #this the movement
                 total_seconds = 0
             frame_count += 1
             pygame.draw.rect(screen, hc, [250,0,250,500])
-            pygame.draw.rect(screen, hc, [250, 200, 700, 350])
+            pygame.draw.rect(screen, hc, [250, 200, 750, 430])
+            pygame.draw.rect(screen, hc, [610, 630, 250, 50])
             Chr(x, y)
             pygame.display.flip()
             
