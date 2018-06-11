@@ -293,7 +293,7 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            pygame.draw.rect(screen, recc, [840, 680, 250, 220])
+            pygame.draw.rect(screen, hc, [840, 680, 250, 220])
             Chr(x, y)
             pygame.display.flip()
             timer.tick(60)
@@ -313,7 +313,7 @@ def movement(): #this the movement
                 total_seconds = 0
             frame_count += 1
             pygame.draw.rect(screen, recc, [250,0,250,200])
-            pygame.draw.rect(screen, recc, [250, 200, 500, 100])
+            pygame.draw.rect(screen, recc, [250, 200, 700, 400])
             Chr(x, y)
             pygame.display.flip()
             timer.tick(60)
@@ -377,22 +377,20 @@ def movement(): #this the movement
                 y += 7
             if y >= 345:
                 y -= 7        
-            if x >= 250 and x <= 500:
-                if y >= 335:                    
-                    y += 7
-            if x >= 820 and x <= 1090:
-                if y <= 250:
+            if x >= 840 and x <= 965:
+                if y <= 230:
                     y -= 7
-            if y <= 210 and x <= 840 and x >= 959:
-                if x <= 835 and y <= 210:
-                    x += 7
-                if x >= 880 and y <= 210:
-                    x -= 7
-            if y >= 465 and x <= 250 and x >= 450:
-                if x <= 250:
-                    x += 7
-                if x >= 450:
-                    x -= 7
+            if x <= 840 and y <= 210:
+                x += 7
+            if x >= 965 and y <= 210:
+                x -= 7
+            if x >= 252 and x <= 377:
+                if y >= 340:
+                    y += 7
+            if x <= 252 and y >= 349:
+                x += 7
+            if x >= 377 and y >= 349:
+                x -=7
         
         if bound == 4:
             if x <= 840:
@@ -403,9 +401,16 @@ def movement(): #this the movement
         if bound == 5:
             if x <= 250:
                 x += 7
-            if x >= 490:
+            if x >= 490 and y < 200:
                 x -= 7
-                
+            if y >= 550:
+                y -= 7
+            if y >= 200:
+                if x >= 250:
+                    x += 7
+                if x >= 950:
+                    x -= 7    
+
         if bound == 0: 
             screen.fill(colr)
             total_seconds = frame_count // frame_rate
@@ -461,7 +466,7 @@ def movement(): #this the movement
                 total_seconds = 0
             frame_count += 1
             text("It seems this is the Boss Door. Go find the TWO Keys to unlock it.", 200, 50, 900, 100, 36)
-            pygame.draw.rect(screen, recc, [35,220, 1200, 250])
+            pygame.draw.rect(screen, hc, [35,220, 1200, 250])
             screen.blit( corridor, (35, 220)) 
             pygame.draw.rect(screen, hc, [1235, 205, 45, 280])
             Chr( x, y)
@@ -480,9 +485,9 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            pygame.draw.rect(screen, recc, [35,220, 1200, 250])
-            pygame.draw.rect(screen, recc, [840,0, 250, 220])
-            pygame.draw.rect(screen, recc, [250, 470, 250, 220])
+            pygame.draw.rect(screen, hc, [35,220, 1200, 250])
+            pygame.draw.rect(screen, hc, [840,0, 250, 220])
+            pygame.draw.rect(screen, hc, [250, 470, 250, 220])
             screen.blit( corridor, (35, 220)) 
             pygame.draw.rect(screen, hc, [1235, 205, 45, 280])
             Chr( x, y)
@@ -501,9 +506,10 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            pygame.draw.rect(screen, recc, [840, 680, 250, 220])
+            
+            pygame.draw.rect(screen, sc, [840, 680, 250, 220])
             Chr(x,y)
-            pygame.display.flip()
+            pygame.display.update()
             timer.tick(60)
 
         if bound == 5:
@@ -518,8 +524,8 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            pygame.draw.rect(screen, recc, [250,0,250,500])
-            pygame.draw.rect(screen, recc, [250, 200, 600, 300])
+            pygame.draw.rect(screen, hc, [250,0,250,500])
+            pygame.draw.rect(screen, hc, [250, 200, 700, 350])
             Chr(x, y)
             pygame.display.flip()
             
