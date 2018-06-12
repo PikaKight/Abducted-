@@ -217,7 +217,8 @@ def Chr( x, y): #this is to load the character pic
 def tutorial():#starts the game and places the setting
      screen.fill(colr)
      screen.blit( startroom, (315, 35))
-     screen.blit( corridor, (945, 220)) 
+     screen.blit( corridor, (945, 220))
+     screen.blit( closed, (945, 220)) 
      Chr( 615, 259)
      text("Use WASD to move", 100 , 0 , 100, 50, 36)
      pygame.display.flip()
@@ -271,7 +272,6 @@ def movement(): #this the movement
             x = 35
             bound = 2
             screen.fill(colr)
-            pygame.draw.rect(screen, recc, [35,220, 1100, 250])
             Chr( 35, y)
             pygame.display.flip()
 
@@ -282,56 +282,28 @@ def movement(): #this the movement
     
         if  x >= 840 and x <= 1090 and y <= 0 and bound == 3:
             bound = 4
-            y = 600
             screen.fill(colr)
-            total_seconds = frame_count // frame_rate
-            minutes = total_seconds // 60
-            seconds = total_seconds % 60
-            output_string = "{0:02}:{1:02}".format(minutes, seconds)
-            time = font.render(output_string, True, recc)
-            screen.blit(time, [1100, 35])
-            total_seconds = (frame_count // frame_rate)
-            if total_seconds < 0:
-                total_seconds = 0
-            frame_count += 1
             pygame.draw.rect(screen, hc, [840, 680, 250, 220])
-            Chr(x, y)
+            Chr(x, 600)
             pygame.display.flip()
-            timer.tick(60)
             
         if y >= 680 and x >= 250 and x <= 500 and bound == 3:
             bound = 5
-            y = 35
             screen.fill(colr)
-            otal_seconds = frame_count // frame_rate
-            minutes = total_seconds // 60
-            seconds = total_seconds % 60
-            output_string = "{0:02}:{1:02}".format(minutes, seconds)
-            time = font.render(output_string, True, recc)
-            screen.blit(time, [1100, 35])
-            total_seconds = (frame_count // frame_rate)
-            if total_seconds < 0:
-                total_seconds = 0
-            frame_count += 1
-            pygame.draw.rect(screen, recc, [250,0,250,200])
-            pygame.draw.rect(screen, recc, [250, 200, 630, 610])
-            Chr(x, y)
+            Chr(x, 35)
             pygame.display.flip()
-            timer.tick(60)
+
 
         if bound == 4 and y >= 680:
             bound = 3
-            y = 50 
-            Chr( x, y)
+            Chr( x, 50)
             pygame.display.flip()
-            timer.tick(60)
             
         if bound == 5 and y <= 0:
             bound = 3
-            y = 600
-            Chr(x,y)
+            Chr(x, 600)
             pygame.display.flip()
-            timer.tick(60)
+
             
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
@@ -410,12 +382,15 @@ def movement(): #this the movement
                 y += 7
             if x >= 876:
                 x  -= 7
-            if y >= 504:
+            if (y >= 504 and x <= 607) or (x >= 734 and y >= 504) :
                 y -= 7
-            if x >= 608 and x <= 740:
-                if y <= 498:
-                    y += 7
-    
+            if y >= 329 and y <= 434 and x >= 875:
+                x += 7
+            if y <= 329 and x >= 990:
+                y += 7
+            if y >= 434 and x >= 990:
+                y -= 7
+
            
         if bound == 0: 
             screen.fill(colr)
@@ -436,7 +411,6 @@ def movement(): #this the movement
             Chr( x, y)
             screen.blit(key, (820, 510))
             pygame.display.flip()
-            timer.tick(60)
 
         if bound == 1:
             screen.fill(colr)
@@ -512,11 +486,9 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            
-            pygame.draw.rect(screen, sc, [840, 680, 250, 220])
+            pygame.draw.rect(screen, hc, [840, 680, 250, 220])
             Chr(x,y)
-            pygame.display.update()
-            timer.tick(60)
+            pygame.display.flip()
 
         if bound == 5:
             screen.fill(colr)
@@ -533,6 +505,7 @@ def movement(): #this the movement
             pygame.draw.rect(screen, hc, [250,0,250,500])
             pygame.draw.rect(screen, hc, [250, 200, 750, 430])
             pygame.draw.rect(screen, hc, [610, 630, 250, 50])
+            pygame.draw.rect(screen,hc, [1000, 320, 280, 250])
             Chr(x, y)
             pygame.display.flip()
             
