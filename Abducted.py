@@ -13,14 +13,27 @@ startroom = pygame.image.load('Starting Room.png') # load the starting room pic
 key = pygame.image.load('Lock_Large.png') # Load the key pic
 corridor = pygame.image.load('Corridor.png') # load the 1st corridor pic
 closed = pygame.image.load('Closed door.png') # load the closed door pic
-opened = pygame.image.load('Open Door.png') #load the open door pic 
+opened = pygame.image.load('Open Door.png') #load the open door pic
+corridor2_cl = pygame.image.load('Corridor 2 Closed.png')# loads the close door corridor 2 pic
+corridor2_op = pygame.image.load('Corridor 2 Open.png')# loads the open door corridor 2 pic
+corridor34 = pygame.image.load('Corridor 3,4.png') # loads the corridor 3/4
+Leveloneexit = pygame.image.load('Boss Door One Keyhole.png') # loads the 1st level exit
+Longcorridor = pygame.image.load('Long corridor.png') #loads long corridor
+corridor5 = pygame.image.load('Corridor 5.png') #loads 5th corridor
+corridor6 = pygame.image.load('Corridor 6.png')# loads 6th corridor
+corridor7 = pygame.image.load('Corridor 7.png')# loads 7th corridor
+corridor8 = pygame.image.load('Corridor 8.png')# loads 8th corridor
+room2 = pygame.image.load('Room 2.png') # loads 2nd room
+room3 = pygame.image.load('Room 3.png') # loads 3rd room
+rooml2 = pygame.image.load('Boss Room.png')# loads the level 2 room
+finalexit = pygame.image.load('Boss Door Two Keyhole.png')# loads the final exit!!
 key_place = random.randint(1,3) # this generates a random number inclusively between 1 to 3 BTW this decides the key location
 print(key_place) #this prints the number
 
 pygame.mixer.music.play(-1) # play the music and loops it
 pygame.mixer.music.set_volume(0.25) # sets the volume to half
 
-pygame.display.set_caption("Abducted")
+pygame.display.set_caption("Abducted") # this adds a title to the game on the top left outside the screen in the border 
 
 colr = (0,0,0) #Background colour
 
@@ -237,7 +250,7 @@ def movement(): #this the movement
         y = 259 #and the y axis of the character   
     xc = 0 #this is for the movement of the character (left to right)
     yc = 0 #this is for the movement of the character (up to down)
-    sup =1
+    sup =1 # this is to do speed boost
     
     start = True
     while start:
@@ -270,38 +283,38 @@ def movement(): #this the movement
         y+= (yc * sup)
 
         if x  > 810 and x  < 910 and y > 480 and y  < 600 and bound == 0: # if you are in this area and bound is o, then it will
-            pygame.mixer.Sound.play(dooropen)
+            pygame.mixer.Sound.play(dooropen)# plays door open sound effects
             bound +=1
             print ("You are unbound!")
 
-        if x >= 1280 and bound == 1:
+        if x >= 1280 and bound == 1: # if it is bound 1 and this area, then it will do this:
             x = 35
             bound = 2
 
-        if x >= 1000 and bound == 2:
+        if x >= 1000 and bound == 2: # if it is bound 2 and this area, then it will do this:
             bound = 3
-            text("It seems that the door is locked. Go find the Key to unlock it.", 200, 50, 900, 100, 36)
+            text("It seems that the Boss door is locked. Go find the Key to unlock it.", 200, 50, 900, 100, 36)
             pygame.display.flip()
     
-        if  x >= 840 and x <= 1090 and y <= 0 and bound == 3:
+        if  x >= 840 and x <= 1090 and y <= 211 and bound == 3: # if it is bound 3 and this area, then it will do this: (this is for the top part)
             bound = 4
             y = 600
             
-        if y >= 680 and x >= 250 and x <= 500 and bound == 3:
+        if y >= 680 and x >= 250 and x <= 500 and bound == 3:# if it is bound 3 and this area, then it will do this: (this is for bottom)
             bound = 5
             y = 35
 
-        if  x >= 1278 and bound == 5:
+        if  x >= 1278 and bound == 5: # if it is bound 5 and this area, then it will do this: (right area)
             bound = 6
             x = 35
 
-        if y >= 660 and bound == 5:
+        if y >= 660 and bound == 5: # if it is bound 1 and this area, then it will do this: (bottom area)
             bound = 7
             y = 35
             
         if bound == 4 and y >= 680:
             bound = 3
-            y = 50
+            y = 215
             
         if bound == 5 and y <= 0:
             bound = 3
@@ -320,7 +333,7 @@ def movement(): #this the movement
             print("You did it, You got your freedom!")
             pygame.mixer.Sound.play(dooropen)
 
-        if x >= 700 and x <= 715 and y >= 59 and y <= 69 and key_place == 2 and unlock == 0:
+        if x >= 700 and x <= 715 and y >= 69 and y <= 79 and key_place == 2 and unlock == 0:
             unlock = 1
             print("You did it, You got your freedom!")
             pygame.mixer.Sound.play(dooropen)
@@ -339,7 +352,39 @@ def movement(): #this the movement
            backmusic = pygame.mixer.music.load("The_New_Order.mp3")
            pygame.mixer.music.play(-1)
            pygame.mixer.music.set_volume(0.5)
-           
+
+        if x >= 1270 and bound == 8:
+            bound = 9
+            x = 10
+
+        if x >= 1270 and bound == 9:
+            bound = 10
+            x = 10
+
+        if x >= 1270 and bound == 10:
+            bound = 11
+            x = 10
+
+        if x <= 0 and bound == 11:
+            bound = 10
+            x = 1260
+            
+        if x <= 0 and bound == 10:
+            bound = 9
+            x = 1260
+            
+        if x <= 0 and bound == 9:
+            bound = 8
+            x = 1260
+            
+        if y <= 200 and bound == 11:
+            y = 670
+            bound = 12
+
+        if bound == 12 and y >= 680:
+            y = 210
+            bound = 11
+        
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
                 x += 7
@@ -371,7 +416,7 @@ def movement(): #this the movement
                 x += 7
             if x >= 1100:
                 x -= 7
-            if y <= 220:
+            if y <= 231:
                 y += 7
             if y >= 345:
                 y -= 7
@@ -381,13 +426,8 @@ def movement(): #this the movement
                 x += 7
             if x >= 1100:
               x -= 7                
-            if y <= 220:
-                y += 7
             if y >= 345:
                 y -= 7        
-            if x >= 840 and x <= 965:
-                if y <= 230:
-                    y -= 7
             if x <= 840 and y <= 210:
                 x += 7
             if x >= 965 and y <= 210:
@@ -399,6 +439,10 @@ def movement(): #this the movement
                 x += 7
             if x >= 377 and y >= 349:
                 x -=7
+            if x <= 853 and y <= 231:
+                y += 7
+            if x >= 1089 and y <= 231:
+                y += 7
             if unlock == 1:
                 if x >= 1095:
                     x += 7
@@ -408,7 +452,7 @@ def movement(): #this the movement
                 x += 7
             if x >= 965:
                 x -= 7
-            if y <= 30:
+            if y <= 103:
                 y += 7
             if y >= 334 and x <= 721:
                 y -= 7
@@ -452,7 +496,7 @@ def movement(): #this the movement
                 x += 7
             if x <= 250 and y <= 198:
                 x += 7
-            if y <= 16:
+            if y <= 86:
                 y += 7
             
         if bound == 7:
@@ -487,6 +531,37 @@ def movement(): #this the movement
                 y -= 14
             if x >= 945 and y <= 207:
                 y += 14
+
+        if bound == 9:
+            if y <= 236:
+                y += 14
+            if y >= 334:
+                y -= 14
+
+        if bound == 10:
+            if y <= 236:
+                y += 14
+            if y >= 334:
+                y -= 14
+
+        if bound == 11:
+            if x >= 1080:
+              x -= 14              
+            if y >= 341:
+                y -= 14
+            if y <= 236 and x < 841:
+                y += 14
+            if y <= 236 and x >= 1080:
+                y += 14
+
+        if bound == 12:
+            if y <= 110:
+                y += 14
+            if x  >= 961:
+                x -= 14
+            if y >= 318 and x <= 841:
+                y -= 14
+
                 
         if bound == 0: 
             screen.fill(colr)
@@ -542,9 +617,8 @@ def movement(): #this the movement
                 total_seconds = 0
             frame_count += 1
             text("It seems the door is locked. Go find the Key to unlock it.", 200, 50, 900, 100, 36)
-            pygame.draw.rect(screen, hc, [35,220, 1200, 250])
-            screen.blit( corridor, (35, 220)) 
-            pygame.draw.rect(screen, hc, [1235, 205, 45, 280])
+            screen.blit( corridor2_cl, (35, 220)) 
+            screen.blit( Leveloneexit, (1235, 205,)) 
             Chr( x, y)
             pygame.display.update()
             timer.tick(60)
@@ -561,11 +635,11 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            pygame.draw.rect(screen, hc, [35,220, 1200, 250])
-            pygame.draw.rect(screen, hc, [840,0, 250, 220])
-            pygame.draw.rect(screen, hc, [250, 470, 250, 220])
-            screen.blit( corridor, (35, 220)) 
-            pygame.draw.rect(screen, hc, [1235, 205, 45, 280])
+            screen.blit( corridor2_op, (35, 220))
+            screen.blit( corridor34, (250, 470,))
+            screen.blit( Leveloneexit, (1235, 205,))
+            if unlock == 1:
+                pygame.draw.rect(screen, recc, [1235, 205, 45, 280])
             Chr( x, y)
             pygame.display.update()
             timer.tick(60)
@@ -582,8 +656,8 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            pygame.draw.rect(screen, hc, [840, 460, 250, 220])
-            pygame.draw.rect(screen, hc, [340, 30, 750, 430])
+            screen.blit(room2 ,(340, 30))
+            screen.blit(corridor5, (840, 460))
             Chr(x,y)
             if key_place == 1:
                 screen.blit(key, (410, 199))
@@ -602,10 +676,10 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            pygame.draw.rect(screen, hc, [250,0,250,500])
-            pygame.draw.rect(screen, hc, [250, 200, 750, 430])
-            pygame.draw.rect(screen, hc, [610, 630, 250, 50])
-            pygame.draw.rect(screen,hc, [1000, 320, 280, 250])
+            screen.blit(corridor6,(250, 0))
+            screen.blit(corridor7,(610, 630))
+            screen.blit(corridor8,(1000, 320))
+            screen.blit(room3,(250, 200))
             Chr(x, y)
             pygame.display.update()
             timer.tick(60)
@@ -623,10 +697,10 @@ def movement(): #this the movement
                 total_seconds = 0
             frame_count += 1
             pygame.draw.rect(screen,hc,[0, 320, 250, 250])
-            pygame.draw.rect(screen, hc, [250, 35, 630, 610])
+            screen.blit(rooml2, (250, 35,))
             Chr(x, y)
             if key_place == 2:
-                screen.blit(key, (736, 89))
+                screen.blit(key, (736, 79))
             pygame.display.update()
             timer.tick(60)
 
@@ -642,7 +716,7 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            pygame.draw.rect(screen, hc,[610, 0, 250, 500])
+            screen.blit(corridor6, (610, 0))
             Chr(x, y)
             if  key_place == 3:
                 screen.blit(key, (687, 366))
@@ -661,16 +735,83 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            pygame.draw.rect(screen, hc, [35,220, 1245, 250])
-            pygame.draw.rect(screen,hc, [315, 35, 630, 610])
+            screen.blit(Longcorridor, (0, 220))
+            screen.blit(rooml2, (315, 35))
             Chr(x,y)
             pygame.display.update()
             timer.tick(60)
-        
-def Score():
-    screen.fill(colr)
-    name = input("Name: ")
-    time = font.render(output_string, True, recc)
 
+        if bound == 9:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit(Longcorridor, (0, 220))
+            Chr(x, y)
+            pygame.display.update()
+            timer.tick(60)
+
+        if bound == 10:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit(Longcorridor, (0, 220))
+            Chr(x, y)
+            pygame.display.update()
+            timer.tick(60)
+
+        if bound == 11:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit( corridor2_op, (0, 220))
+            screen.blit( finalexit, (1200, 205,))
+            Chr(x, y)
+            pygame.display.update()
+            timer.tick(60)
+
+        if bound == 12:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit(Longcorridor, (0, 220))
+            screen.blit(room2 ,(340, 30))
+            screen.blit(corridor5, (840, 460))
+            pygame.draw.rect(screen, colr, [1090, 0, 190, 680 ])
+            Chr(x, y)
+            pygame.display.update()
+            timer.tick(60)
+            
 game()
 pygame.quit()  
