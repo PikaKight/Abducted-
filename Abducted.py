@@ -14,8 +14,8 @@ key = pygame.image.load('Lock_Large.png') # Load the key pic
 corridor = pygame.image.load('Corridor.png') # load the 1st corridor pic
 closed = pygame.image.load('Closed door.png') # load the closed door pic
 opened = pygame.image.load('Open Door.png') #load the open door pic 
-key_place = random.randint(1,3) # this generates a random number inclusively between 1 to 3
-print(key_place)
+key_place = random.randint(1,3) # this generates a random number inclusively between 1 to 3 BTW this decides the key location
+print(key_place) #this prints the number
 
 pygame.mixer.music.play(-1) # play the music and loops it
 pygame.mixer.music.set_volume(0.25) # sets the volume to half
@@ -228,7 +228,7 @@ def tutorial():#starts the game and places the setting
      movement()    
 
 def movement(): #this the movement
-    global output_string
+    global output_string, bound, unlock, xc, yc
     frame_count = 0
     bound = 0 #this is for the boundaries and to change them base on the different bound value
     unlock = 0 #this is too unlock the exits when the value  
@@ -237,6 +237,8 @@ def movement(): #this the movement
         y = 259 #and the y axis of the character   
     xc = 0 #this is for the movement of the character (left to right)
     yc = 0 #this is for the movement of the character (up to down)
+    sup =1
+    
     start = True
     while start:
         for event in pygame.event.get():
@@ -264,8 +266,8 @@ def movement(): #this the movement
                 if event.key == K_d:
                     xc = 0
                     
-        x += xc #makes the character move by changing the location on the x and y axis
-        y+= yc
+        x += (xc * sup)#makes the character move by changing the location on the x and y axis
+        y+= (yc * sup)
 
         if x  > 810 and x  < 910 and y > 480 and y  < 600 and bound == 0: # if you are in this area and bound is o, then it will
             pygame.mixer.Sound.play(dooropen)
@@ -331,6 +333,12 @@ def movement(): #this the movement
         if x >= 1263 and bound == 3 and unlock == 1:
            bound = 8
            x = 35
+           sup = 2
+           print("Just Kidding, There's still more!")
+           pygame.mixer.music.stop() #ends the first song and goes to the next
+           backmusic = pygame.mixer.music.load("The_New_Order.mp3")
+           pygame.mixer.music.play(-1)
+           pygame.mixer.music.set_volume(0.5)
            
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
@@ -455,6 +463,31 @@ def movement(): #this the movement
             if y >= 371:
                 y -= 7
 
+       
+        if bound == 8:
+            if x <= 35:
+                x += 14 
+            if y <= 246 and x <= 223:
+                y += 14
+            if y >= 336 and x <= 223:
+                y -= 14
+            if x <= 313 and y <= 156:
+                x += 14
+            if x <= 313 and y >= 425:
+                x += 14
+            if y <= 19:
+                y += 14
+            if  y >= 509:
+                y -= 14
+            if x >= 818 and y >= 404:
+                x -= 14
+            if x >= 818 and y <= 81:
+                x -= 14
+            if x >= 903 and y >= 333:
+                y -= 14
+            if x >= 945 and y <= 207:
+                y += 14
+                
         if bound == 0: 
             screen.fill(colr)
             total_seconds = frame_count // frame_rate
@@ -628,9 +661,12 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
+            pygame.draw.rect(screen, hc, [35,220, 1245, 250])
+            pygame.draw.rect(screen,hc, [315, 35, 630, 610])
             Chr(x,y)
             pygame.display.update()
             timer.tick(60)
+        
 def Score():
     screen.fill(colr)
     name = input("Name: ")
