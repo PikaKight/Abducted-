@@ -384,6 +384,12 @@ def movement(): #this the movement
         if bound == 12 and y >= 680:
             y = 210
             bound = 11
+
+        if bound == 12 and x <= 0:
+            x = 1265
+            bound = 13
+
+        if bound == 13 and x >= 1280
         
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
@@ -496,7 +502,7 @@ def movement(): #this the movement
                 x += 7
             if x <= 250 and y <= 198:
                 x += 7
-            if y <= 86:
+            if y <= 76:
                 y += 7
             
         if bound == 7:
@@ -561,7 +567,11 @@ def movement(): #this the movement
                 x -= 14
             if y >= 318 and x <= 841:
                 y -= 14
-
+            if y <= 255 and x >= 338:
+                x += 14
+            if y <= 236 and x < 338:
+                y += 14
+            
                 
         if bound == 0: 
             screen.fill(colr)
