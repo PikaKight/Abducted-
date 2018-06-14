@@ -30,6 +30,7 @@ room3 = pygame.image.load('Room 3.png') # loads 3rd room
 rooml2 = pygame.image.load('Boss Room.png')# loads the level 2 room
 finalexit = pygame.image.load('Boss Door Two Keyhole.png')# loads the final exit!!
 key_place = random.randint(1,3) # this generates a random number inclusively between 1 to 3 BTW this decides the key location
+key_place2 = random.randint(1, 3)# this is 2nd key location
 print(key_place) #this prints the number
 
 pygame.mixer.music.play(-1) # play the music and loops it
@@ -432,6 +433,8 @@ def movement(): #this the movement
             x = 10
             bound = 14
 
+         if bound == 15
+         
         if bound == 14 and x <= 195 and y >= 680:
             y = 15
             bound = 16
@@ -439,7 +442,9 @@ def movement(): #this the movement
         if bound == 16 and y <= 0:
             y = 670
             bound = 14
-            
+
+       
+        
         if bound == 14 and x >= 1036 and y >= 680:
             y = 20
             bound = 17
@@ -447,7 +452,7 @@ def movement(): #this the movement
         if bound == 17 and y <= 0:
             y = 670
             bound = 14
-            
+        
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
                 x += 7
@@ -650,13 +655,41 @@ def movement(): #this the movement
                 y -= 14
             if x <= 1036 and y >= 460:
                 x += 14
-            if y >= 460 and x > 1119:
-                x -= 7
-            if y >= 460 and x < 84:
+            if y >= 460 and x > 1147:
+                x -= 14
+            if y >= 460 and x < 83:
                 x += 14
             if y >= 460 and x >= 196:
                 x -= 14
-            
+                
+        if bound == 15:
+            if x <= 924 and y <= 220:
+                y += 14
+            if x >= 1160 and y <= 220:
+                y += 14
+            if y >= 334:
+                y -= 14
+            if x <= 97:
+                x += 14
+                
+        if bound == 16:
+            if x <= 94:
+                x += 14
+            if x >= 206 and y <= 280:
+                x -= 14
+            if y >= 519:
+                y -= 14
+            if y <= 196 and x >= 330:
+                y += 14
+            if x >= 696:
+                x -= 14
+                
+        if bound == 17:
+            if x <= 1046:
+                x += 14
+            if x >= 1134:
+                x -= 14
+                
         if bound == 0: 
             screen.fill(colr)
             total_seconds = frame_count // frame_rate
