@@ -24,6 +24,7 @@ corridor6 = pygame.image.load('Corridor 6.png')# loads 6th corridor
 corridor7 = pygame.image.load('Corridor 7.png')# loads 7th corridor
 corridor8 = pygame.image.load('Corridor 8.png')# loads 8th corridor
 corridor10 = pygame.image.load('Corridor 10.png')# loads 10th corridor
+Largecorridor = pygame.image.load('Corridor large.png')# loads 8th corridor
 room2 = pygame.image.load('Room 2.png') # loads 2nd room
 room3 = pygame.image.load('Room 3.png') # loads 3rd room
 rooml2 = pygame.image.load('Boss Room.png')# loads the level 2 room
@@ -32,7 +33,7 @@ key_place = random.randint(1,3) # this generates a random number inclusively bet
 print(key_place) #this prints the number
 
 pygame.mixer.music.play(-1) # play the music and loops it
-pygame.mixer.music.set_volume(0.25) # sets the volume to half
+pygame.mixer.music.set_volume(0) # sets the volume to half
 
 pygame.display.set_caption("Abducted") # this adds a title to the game on the top left outside the screen in the border 
 
@@ -46,7 +47,7 @@ hc = (100, 255, 150) #highlight colour
 
 timer = pygame.time.Clock() #lets us use the clock more
 
-timer.tick(60)
+timer.tick(60) # sets the max fps to 60
  
 font = pygame.font.Font(None, 25)
 
@@ -55,8 +56,8 @@ frame_rate = 20
 start_time = 0
 
 def textObj(msg, text): #this function mainly handles what colour the text has 
-    textcolour =  textfont.render(msg, 1,  recc)
-    return textcolour, textcolour.get_rect()
+    textcolour =  textfont.render(msg, 1,  recc) #this sets the colour of the text
+    return textcolour, textcolour.get_rect()# basically returns the value to the function for later use
     
 def text(msg, x, y, w, h, size): #this is the main function that creates the text and the position 
     global textfont
@@ -74,13 +75,11 @@ def button(msg, x, y, w, h, sc, hc, a): #creates a button the works and has word
         pygame.draw.rect(screen, hc,(x,y,w,h)) #makes the button highlighted
         if click[0] == 1 and a == 1: #check if the left button is click
             Startaction() #calls for this action
-        if click[0] == 1 and a == 2:
-            Load()
     else:
         pygame.draw.rect(screen, sc, (x,y,w,h)) #or it would put back the button back to normal
 
     global textfont #the next few lines are just the text code just for the buttons
-    textfont = pygame.font.SysFont('forte', 72)
+    textfont = pygame.font.SysFont('forte', 72) 
     textscreen, textrecc = textObj(msg, textfont)
     textrecc.center = ((x+(w/2)) , (y+(h/2)))
     screen.blit(textscreen, textrecc)
@@ -94,7 +93,8 @@ def game(): #this is for the game to run
                 start = False
                 
         screen.fill(colr) #makes the screen black
-        button("Start", 465,350,350,100, sc, hc, 1) #creates a start button
+        text("ABDUCTED", 160,80,960,300, 200) 
+        button("Start", 455,374,350,100, sc, hc, 1) #creates a start button
         pygame.display.flip() #puts everything on to the display, which lets the user see it
  
 def Startaction(): #this lets the user click on the start button
@@ -110,12 +110,12 @@ def Startaction(): #this lets the user click on the start button
                     pygame.draw.rect(screen, recc,[250,50,335,400],5) #Draws rectangles on the screen
                     global ChrF # turns the ChrF var into a global var that other functions can use
                     ChrF = pygame.image.load('Character - GirlV2.png') #Loads the image of female card
-                    ChrM = pygame.image.load('Character - Dude.png')
-                    screen.blit(ChrF, (250, 50))
-                    pygame.draw.rect(screen, recc,[620,50,335,400],5)
+                    ChrM = pygame.image.load('Character - Dude.png') # loads the male card image
+                    screen.blit(ChrF, (250, 50))# puts the image on the screen 
+                    pygame.draw.rect(screen, recc,[620,50,335,400],5) 
                     screen.blit(ChrM, (620, 50))
                     text("Choose a character using 1 or 2, Don't use Numb Pad", 50,500,1080,150, 50) #another text that tells the user what to do
-                    pygame.display.flip()
+                    pygame.display.flip()# puts everything on the screen
                     Cchoice() #calls for the Cchoice functions               
                     
 def Cchoice(): # lets the user choose the character
@@ -156,19 +156,19 @@ def story(a): #story function
     text("Greeting, I am the goddess of Victory, Nike.", 100, 75, 1100, 100, 36) #general story 
     pygame.display.update()
     timer.tick(30)
-    pygame.time.delay(500)
+    pygame.time.delay(1500)
     text("You were kidnapped by the Lord of the Flies.", 100, 175, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
-    pygame.time.delay(500)
+    pygame.time.delay(1500)
     text("I am here to help you escape. Listen to me carefully", 100, 275, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
-    pygame.time.delay(1000)
+    pygame.time.delay(1500)
     text("The time has come, wait for the your chance and escape.", 100, 375, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
-    pygame.time.delay(500)
+    pygame.time.delay(1500)
     text("Be cautious and Good Luck.", 100, 475, 1100, 100, 36)
     pygame.display.update()
     timer.tick(30)
@@ -186,24 +186,24 @@ def story(a): #story function
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         screen.fill(colr)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(1500)
                         text("You awaken from a odd dream and hear people talking...", 100, 75, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(1500)
                         text("It's time to wake him up or the Boss will be mad", 100, 175, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(1500)
                         text("Prisonner 1, it's time to wake up!", 100, 275, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(1500)
                         text("What the, where is he? Find him!! ... Wait Who are you?!", 100, 375, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
-                        text(" *Screams* ", 100, 375, 1100, 100, 36)
+                        pygame.time.delay(1500)
+                        text(" *Screams* ", 100, 475, 1100, 100, 36)
                         tutorial() #starts the actual game
 
     if a == "F":#female story
@@ -216,24 +216,27 @@ def story(a): #story function
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         screen.fill(colr)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(1500)
                         text("You awaken from a odd dream and hear people talking...", 100, 75, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(1500)
                         text("It's time to wake her up or the Boss will be mad", 100, 175, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(1500)
                         text("Prisonner 1, it's time to wake up!", 100, 275, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
+                        pygame.time.delay(1500)
                         text("What the, where is she? Find her!! ... Wait Who are you?!", 100, 375, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
-                        pygame.time.delay(1000)
-                        text(" *Screams* ", 100, 375, 1100, 100, 36)
+                        pygame.time.delay(1500)
+                        text(" *Screams* ", 100, 475, 1100, 100, 36)
+                        pygame.display.update()
+                        timer.tick(30)
+                        pygame.time.delay(1500)
                         tutorial()
 
 def Chr( x, y): #this is to load the character pic
@@ -280,7 +283,7 @@ def movement(): #this the movement
                 mouse = pygame.mouse.get_pos()
                 print (mouse)
             if event.type == pygame.KEYDOWN:
-                if event.key == K_w: #when the play presses w, a, s, or d the character will move up(w) 5, left(a) 5, down(s) 5, and right(d) 5
+                if event.key == K_w: #when the play presses w, a, s, or d the character will move up(w ) 7, left(a) 7, down(s) 7, and right(d) 7
                     yc -= 7
                 if event.key == K_a:
                     xc -= 7
@@ -370,7 +373,7 @@ def movement(): #this the movement
            pygame.mixer.music.stop() #ends the first song and goes to the next
            backmusic = pygame.mixer.music.load("The_New_Order.mp3")
            pygame.mixer.music.play(-1)
-           pygame.mixer.music.set_volume(0.5)
+           pygame.mixer.music.set_volume(0)
 
         if x >= 1270 and bound == 8:
             bound = 9
@@ -415,6 +418,34 @@ def movement(): #this the movement
 
         if bound == 13 and x <= 0:
             x = 1260
+            bound = 14
+
+        if bound == 14 and x >= 1280:
+            x = 10
+            bound = 13
+            
+        if bound == 14 and x <= 0:
+            x = 1260
+            bound = 15
+
+        if bound == 15 and x >= 1280:
+            x = 10
+            bound = 14
+
+        if bound == 14 and x <= 195 and y >= 680:
+            y = 15
+            bound = 16
+
+        if bound == 16 and y <= 0:
+            y = 670
+            bound = 14
+            
+        if bound == 14 and x >= 1036 and y >= 680:
+            y = 20
+            bound = 17
+
+        if bound == 17 and y <= 0:
+            y = 670
             bound = 14
             
         if bound == 0:
@@ -619,11 +650,11 @@ def movement(): #this the movement
                 y -= 14
             if x <= 1036 and y >= 460:
                 x += 14
-            if x >= 1148 and y >= 460:
-                x -= 14
-            if x <= 83 and y >= 460:
+            if y >= 460 and x > 1119:
+                x -= 7
+            if y >= 460 and x < 84:
                 x += 14
-            if x >= 196 and y >= 460:
+            if y >= 460 and x >= 196:
                 x -= 14
             
         if bound == 0: 
@@ -908,11 +939,66 @@ def movement(): #this the movement
                 total_seconds = 0
             frame_count += 1
             screen.blit(Longcorridor, (0, 220))
-            screen.blit( corridor34, (78, 470,))
-            screen.blit( corridor34, (1020, 470,))
+            screen.blit( corridor34, (78, 470))
+            screen.blit( corridor34, (1020, 470))
             Chr(x, y)
             pygame.display. update()
             timer.tick(60)
-            
+
+        if bound == 15:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit(corridor2_op, (80, 220))
+            Chr(x, y)
+            pygame.display. update()
+            timer.tick(60)
+
+        if bound == 16:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit(corridor6,(78, 0))
+            screen.blit(room3,(78, 220))
+            screen.blit(Largecorridor,(1020, 0))
+            Chr(x, y)
+            pygame.display.update()
+            timer.tick(60)
+
+        if bound == 17:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit(corridor6,(78, 0))
+            screen.blit(room3,(78, 220))
+            screen.blit(Largecorridor,(1020, 0))
+            Chr(x, y)
+            pygame.display.update()
+            timer.tick(60)
+    
 game()
 pygame.quit()  
