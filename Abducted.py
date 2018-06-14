@@ -617,7 +617,14 @@ def movement(): #this the movement
                 y -= 14
             if y >= 320 and x <= 84 and x <= 0:
                 y -= 14
-          #  if x >= 1022 and x <= 1147 and y  
+            if x <= 1036 and y >= 460:
+                x += 14
+            if x >= 1148 and y >= 460:
+                x -= 14
+            if x <= 83 and y >= 460:
+                x += 14
+            if x >= 196 and y >= 460:
+                x -= 14
             
         if bound == 0: 
             screen.fill(colr)
