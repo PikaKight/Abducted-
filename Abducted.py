@@ -433,7 +433,9 @@ def movement(): #this the movement
             x = 10
             bound = 14
 
-         if bound == 15
+        if bound == 15 and y <= 208:
+            y = 670
+            bound = 18             
          
         if bound == 14 and x <= 195 and y >= 680:
             y = 15
@@ -442,8 +444,6 @@ def movement(): #this the movement
         if bound == 16 and y <= 0:
             y = 670
             bound = 14
-
-       
         
         if bound == 14 and x >= 1036 and y >= 680:
             y = 20
@@ -452,7 +452,19 @@ def movement(): #this the movement
         if bound == 17 and y <= 0:
             y = 670
             bound = 14
-        
+
+        if bound == 17 and y >= 680:
+            y = 10
+            bound = 19
+            
+        if bound == 18 and y >= 680:
+            y = 280
+            bound = 15
+
+        if bound == 19 and y <= 0:
+            y = 670
+            bound = 17
+            
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
                 x += 7
@@ -689,6 +701,18 @@ def movement(): #this the movement
                 x += 14
             if x >= 1134:
                 x -= 14
+
+        if bound == 18:
+            if x <= 840 and y >= 460:
+                x += 14
+            if x >= 965:
+                x -= 14
+            if y <= 103:
+                y += 14
+            if y >= 334 and x <= 721:
+                y -= 14
+            if x <= 349:
+                x += 14
                 
         if bound == 0: 
             screen.fill(colr)
@@ -706,6 +730,9 @@ def movement(): #this the movement
             screen.blit( closed, (945, 220)) 
             screen.blit( startroom, (315, 35))
             text("Go to the key to unlock the door", 200, 10, 100, 50, 36)
+            text("All you have to do is    ", 200, 70, 100, 50, 36)
+            text("stand at the key and you will hear", 210, 100, 100, 50, 36)
+            text("the door unlock or open        ", 200, 130, 100, 50, 36)
             Chr( x, y)
             screen.blit(key, (820, 510))
             pygame.display.flip()
@@ -725,7 +752,6 @@ def movement(): #this the movement
             screen.blit( corridor, (945, 220))
             screen.blit( opened, (945, 220)) 
             screen.blit( startroom, (315, 35))
-            text("Go to the key to unlock the door", 200, 10, 100, 50, 36)
             Chr( x, y)
             screen.blit(key, (820, 510))
             pygame.display.update()
@@ -765,6 +791,7 @@ def movement(): #this the movement
             screen.blit( corridor2_op, (35, 220))
             screen.blit( corridor34, (250, 470,))
             screen.blit( Leveloneexit, (1235, 205,))
+            text("If you see black holes in the wall, they are gates to go up!", 200, 50, 900, 100, 36)
             if unlock == 1:
                 pygame.draw.rect(screen, recc, [1235, 205, 45, 280])
             Chr( x, y)
@@ -914,7 +941,8 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-            text("This is it, The Boss Door. Find the Two Keys to open it and excape!", 127, 517, 1000, 100, 36)
+            text("This is it, The Boss Door. Find the Two Keys to open it and excape!", 200, 50, 900, 100, 36)
+            text("Go up to find them", 127, 517, 1000, 100, 36)
             screen.blit( corridor2_op, (0, 220))
             screen.blit( finalexit, (1200, 205,))
             Chr(x, y)
@@ -1032,6 +1060,42 @@ def movement(): #this the movement
             Chr(x, y)
             pygame.display.update()
             timer.tick(60)
-    
+
+        if bound == 18:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit(room2 ,(340, 30))
+            screen.blit(corridor5, (840, 460))
+            Chr(x, y)
+            pygame.display.update()
+            timer.tick(60)
+
+        if bound == 19:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+           screen.blit(corridor2_op, (1020, 220))
+            screen.blit(rooml2, (315, 35))
+            Chr(x, y)
+            pygame.display.update()
+            timer.tick(60)
+            
 game()
 pygame.quit()  
