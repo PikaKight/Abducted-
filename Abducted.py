@@ -9,6 +9,7 @@ screen = pygame.display.set_mode((1280,680)) #the screen size
 
 backmusic = pygame.mixer.music.load("Cloud_Wheels_Castle_Builder.mp3") # loads the background music
 dooropen = pygame.mixer.Sound("Wood_Door_Creak_Open.wav") # loads the opening door sound
+doorunlocked = pygame.mixer.Sound("Opening_door_with_Key.wav") # loads the unlocking door sound
 startroom = pygame.image.load('Starting Room.png') # load the starting room pic
 key = pygame.image.load('Lock_Large.png') # Load the key pic
 corridor = pygame.image.load('Corridor.png') # load the 1st corridor pic
@@ -29,9 +30,6 @@ room2 = pygame.image.load('Room 2.png') # loads 2nd room
 room3 = pygame.image.load('Room 3.png') # loads 3rd room
 rooml2 = pygame.image.load('Boss Room.png')# loads the level 2 room
 finalexit = pygame.image.load('Boss Door Two Keyhole.png')# loads the final exit!!
-key_place = random.randint(1,3) # this generates a random number inclusively between 1 to 3 BTW this decides the key location
-key_place2 = random.randint(1, 3)# this is 2nd key location
-print(key_place) #this prints the number
 
 pygame.mixer.music.play(-1) # play the music and loops it
 pygame.mixer.music.set_volume(0) # sets the volume to half
@@ -52,9 +50,8 @@ timer.tick(60) # sets the max fps to 60
  
 font = pygame.font.Font(None, 25)
 
-frame_count = 0
-frame_rate = 20
-start_time = 0
+frame_count = 0 # used to keep the seconds
+frame_rate = 20 # used later on to find the total seconds
 
 def textObj(msg, text): #this function mainly handles what colour the text has 
     textcolour =  textfont.render(msg, 1,  recc) #this sets the colour of the text
@@ -264,8 +261,14 @@ def tutorial():#starts the game and places the setting
      movement()    
 
 def movement(): #this the movement
+    key_place = random.randint(1,3) # this generates a random number inclusively between 1 to 3 BTW this decides the key location
+    print (key_place) #this prints the number
+    key_place2 = random.randint(1, 3)# this is 2nd key location
+    key_place3 = random.randint(1, 3)# this is 3rd key location
+    print (key_place2)#this prints the 2nd number
+    print (key_place3)#this prints the 3rd number
     global output_string, bound, unlock, xc, yc
-    frame_count = 0
+    frame_count = 0 
     bound = 0 #this is for the boundaries and to change them base on the different bound value
     unlock = 0 #this is too unlock the exits when the value  
     if bound == 0: # when bound is 0 then place the user at the given location at the start
@@ -464,6 +467,58 @@ def movement(): #this the movement
         if bound == 19 and y <= 0:
             y = 670
             bound = 17
+
+        if x >= 597 and x <= 697 and y >=124 and y >= 174 and key_place2 == 1 and bound == 12 and unlock == 1:
+            pygame.mixer.Sound.play(doorunlocked)
+            unlock += 1
+            key_place2 = 0
+            print ("You got one of them! One to go!")
+
+        if x >= 905 and x <= 1005 and y >=124 and y >= 174 and key_place2 == 2 and bound == 13 and unlock == 1:
+            pygame.mixer.Sound.play(doorunlocked)
+            unlock += 1
+            key_place2 = 0
+            print ("You got one of them! One to go!")    
+
+        if x >= 643 and x <= 743 and y >=378 and y >= 428 and key_place2 == 3 and bound == 16 and unlock >= 1:
+            if unlock == 1:
+                pygame.mixer.Sound.play(doorunlocked)
+                print ("You got one of them! One to go!")
+            if unlock == 2:
+                pygame.mixer.Sound.play(dooropen)
+                print ("You got both of them! Now go and be free!")
+            unlock += 1
+            key_place2 = 0
+
+        if x >= 112 and x <= 212 and y >= 292 and y <=342 and key_place3 == 1 and bound == 15 and unlock >= 1:
+           if unlock == 1:
+               pygame.mixer.Sound.play(doorunlocked)
+               print ("You got one of them! One to go!")
+           if unlock == 2:
+               pygame.mixer.Sound.play(dooropen)
+               print ("You got both of them! Now go and be free!")
+           unlock += 1
+           key_place3 = 0
+
+        if x >= 660 and x <= 760 and y >= 292 and y <=342 and key_place3 == 2 and bound == 18 and unlock >= 1:
+            if unlock == 1:
+                pygame.mixer.Sound.play(doorunlocked)
+                print ("You got one of them! One to go!")
+            if unlock == 2:
+                pygame.mixer.Sound.play(dooropen)
+                print ("You got both of them! Now go and be free!")
+            unlock += 1
+            key_place3 = 0   
+
+        if x >= 294 and x <= 394 and y >= 294 and y <=344 and key_place3 == 3 and bound == 19 and unlock >= 1:
+            if unlock == 1:
+                pygame.mixer.Sound.play(doorunlocked)
+                print ("You got one of them! One to go!")
+            if unlock == 2:
+                pygame.mixer.Sound.play(dooropen)
+                print ("You got both of them! Now go and be free!")
+            unlock += 1
+            key_place3 = 0        
             
         if bound == 0:
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
@@ -714,6 +769,20 @@ def movement(): #this the movement
             if x <= 349:
                 x += 14
                 
+        if bound == 19:
+            if x <= 1036 and y <= 110:
+                x += 14
+            if x <= 1036 and y >= 470:
+                x += 14
+            if x >= 1134:
+                x -= 14
+            if x <= 1036 and y <= 220:
+                y += 14
+            if x <= 1036 and y >= 334:
+                y -= 14
+            if x <= 250:
+                x += 14
+        
         if bound == 0: 
             screen.fill(colr)
             total_seconds = frame_count // frame_rate
@@ -966,6 +1035,8 @@ def movement(): #this the movement
             screen.blit(room2 ,(340, 30))
             pygame.draw.rect(screen, colr, [1090, 0, 190, 680 ])
             Chr(x, y)
+            if key_place2 == 1:
+                screen.blit(key,(597, 124))
             pygame.display.update()
             timer.tick(60)
         
@@ -984,6 +1055,8 @@ def movement(): #this the movement
             screen.blit(Longcorridor, (0, 220))
             screen.blit( room2, (650, 35))
             Chr(x, y)
+            if key_place2 == 2:
+                screen.blit(key,(905, 124))
             pygame.display.update()
             timer.tick(60)
 
@@ -1020,6 +1093,8 @@ def movement(): #this the movement
             frame_count += 1
             screen.blit(corridor2_op, (80, 220))
             Chr(x, y)
+            if key_place3 == 1:
+                screen.blit(key,(122, 292))
             pygame.display. update()
             timer.tick(60)
 
@@ -1039,6 +1114,8 @@ def movement(): #this the movement
             screen.blit(room3,(78, 220))
             screen.blit(Largecorridor,(1020, 0))
             Chr(x, y)
+            if key_place2 == 3:
+                screen.blit(key, (643, 378))
             pygame.display.update()
             timer.tick(60)
 
@@ -1076,6 +1153,8 @@ def movement(): #this the movement
             screen.blit(room2 ,(340, 30))
             screen.blit(corridor5, (840, 460))
             Chr(x, y)
+            if key_place3 == 3:
+                screen.blit(key,(660, 292))
             pygame.display.update()
             timer.tick(60)
 
@@ -1091,9 +1170,12 @@ def movement(): #this the movement
             if total_seconds < 0:
                 total_seconds = 0
             frame_count += 1
-           screen.blit(corridor2_op, (1020, 220))
-            screen.blit(rooml2, (315, 35))
+            screen.blit(Longcorridor,( 250, 220))
+            screen.blit(Largecorridor,(1020, 0))
             Chr(x, y)
+            if key_place3 == 3:
+                screen.blit(key,(294, 290))
+            pygame.draw.rect(screen, colr, [1270, 0, 10, 680])
             pygame.display.update()
             timer.tick(60)
             
