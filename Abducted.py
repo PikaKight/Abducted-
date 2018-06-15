@@ -1,5 +1,6 @@
 import pygame, time, random
 from pygame.locals import*
+from os import path 
 
 pygame.mixer.pre_init() 
 pygame.mixer.init()
@@ -30,9 +31,11 @@ room2 = pygame.image.load('Room 2.png') # loads 2nd room
 room3 = pygame.image.load('Room 3.png') # loads 3rd room
 rooml2 = pygame.image.load('Boss Room.png')# loads the level 2 room
 finalexit = pygame.image.load('Boss Door Two Keyhole.png')# loads the final exit!!
+FinalRoomCL = pygame.image.load('Boss Room Closed.png')# loads the final room clossed!!
+FinalRoomOP = pygame.image.load('Boss Room Open.png')# loads the final room open!!
 
 pygame.mixer.music.play(-1) # play the music and loops it
-pygame.mixer.music.set_volume(0) # sets the volume to half
+pygame.mixer.music.set_volume(0.5) # sets the volume to half
 
 pygame.display.set_caption("Abducted") # this adds a title to the game on the top left outside the screen in the border 
 
@@ -52,7 +55,7 @@ font = pygame.font.Font(None, 25)
 
 frame_count = 0 # used to keep the seconds
 frame_rate = 20 # used later on to find the total seconds
-
+                
 def textObj(msg, text): #this function mainly handles what colour the text has 
     textcolour =  textfont.render(msg, 1,  recc) #this sets the colour of the text
     return textcolour, textcolour.get_rect()# basically returns the value to the function for later use
@@ -89,12 +92,13 @@ def game(): #this is for the game to run
         for event in pygame.event.get(): #gets the different events in pygame
             if event.type == pygame.QUIT: #if the user quit the game, this will in turn end the program    
                 start = False
-                
+
         screen.fill(colr) #makes the screen black
         text("ABDUCTED", 160,80,960,300, 200) 
         button("Start", 455,374,350,100, sc, hc, 1) #creates a start button
         pygame.display.flip() #puts everything on to the display, which lets the user see it
- 
+
+            
 def Startaction(): #this lets the user click on the start button
     start = True 
     while start:
@@ -193,7 +197,7 @@ def story(a): #story function
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(1500)
-                        text("Prisonner 1, it's time to wake up!", 100, 275, 1100, 100, 36)
+                        text("Prisonner 1019, it's time to wake up!", 100, 275, 1100, 100, 36)
                         pygame.display.update()
                         timer.tick(30)
                         pygame.time.delay(1500)
@@ -267,7 +271,7 @@ def movement(): #this the movement
     key_place3 = random.randint(1, 3)# this is 3rd key location
     print (key_place2)#this prints the 2nd number
     print (key_place3)#this prints the 3rd number
-    global output_string, bound, unlock, xc, yc
+    global output_string, bound, unlock, xc, yc,  minutes
     frame_count = 0 
     bound = 0 #this is for the boundaries and to change them base on the different bound value
     unlock = 0 #this is too unlock the exits when the value  
@@ -307,7 +311,7 @@ def movement(): #this the movement
                     
         x += (xc * sup)#makes the character move by changing the location on the x and y axis
         y+= (yc * sup)
-
+# The following is basically the 1st level, and the areas of which the screen will change
         if x  > 810 and x  < 910 and y > 480 and y  < 600 and bound == 0: # if you are in this area and bound is o, then it will
             pygame.mixer.Sound.play(dooropen)# plays door open sound effects
             bound +=1
@@ -337,8 +341,8 @@ def movement(): #this the movement
         if y >= 660 and bound == 5: # if it is bound 1 and this area, then it will do this: (bottom area)
             bound = 7
             y = 35
-            
-        if bound == 4 and y >= 680:
+        # This lets the user back to the previous screen    
+        if bound == 4 and y >= 680: 
             bound = 3
             y = 215
             
@@ -354,6 +358,7 @@ def movement(): #this the movement
             bound = 5
             y = 555
 
+    #This is for unlocking the 2nd door
         if x >= 370 and x <= 392 and y >= 165 and y <= 175 and key_place == 1 and unlock == 0 and bound == 4:
             unlock = 1
             print("You did it, You got your freedom!")
@@ -368,7 +373,8 @@ def movement(): #this the movement
             unlock = 1
             print("You did it, You got your freedom!")
             pygame.mixer.Sound.play(dooropen)
-
+    #only the stuff above is for the unlocking the 2nd door
+ # The following is for the level 2 area and are the areas of which the screen will change 
         if x >= 1263 and bound == 3 and unlock == 1:
            bound = 8
            x = 35
@@ -377,8 +383,8 @@ def movement(): #this the movement
            pygame.mixer.music.stop() #ends the first song and goes to the next
            backmusic = pygame.mixer.music.load("The_New_Order.mp3")
            pygame.mixer.music.play(-1)
-           pygame.mixer.music.set_volume(0)
-
+           pygame.mixer.music.set_volume(0.5)
+ # These are long hallways :)
         if x >= 1270 and bound == 8:
             bound = 9
             x = 10
@@ -390,15 +396,15 @@ def movement(): #this the movement
         if x >= 1270 and bound == 10:
             bound = 11
             x = 10
-
+ # This lets the user back to the previous screen    
         if x <= 0 and bound == 11:
             bound = 10
             x = 1260
-            
+ # This lets the user back to the previous screen                
         if x <= 0 and bound == 10:
             bound = 9
             x = 1260
-            
+ # This lets the user back to the previous screen                
         if x <= 0 and bound == 9:
             bound = 8
             x = 1260
@@ -406,15 +412,19 @@ def movement(): #this the movement
         if y <= 200 and bound == 11:
             y = 670
             bound = 12
-
-        if bound == 12 and y >= 680:
+ # This lets the user back to the previous screen    
+        if bound == 12 and y >= 680 and  unlock != 3:
             y = 210
             bound = 11
+
+        if bound == 12 and y >= 680 and  unlock == 3:
+            y = 210
+            bound = 20
 
         if bound == 12 and x <= 0:
             x = 1265
             bound = 13
-
+ # This lets the user back to the previous screen    
         if bound == 13 and x >= 1280:
             x = 10
             y = 306
@@ -423,7 +433,7 @@ def movement(): #this the movement
         if bound == 13 and x <= 0:
             x = 1260
             bound = 14
-
+ # This lets the user back to the previous screen    
         if bound == 14 and x >= 1280:
             x = 10
             bound = 13
@@ -431,7 +441,7 @@ def movement(): #this the movement
         if bound == 14 and x <= 0:
             x = 1260
             bound = 15
-
+     # This lets the user back to the previous screen    
         if bound == 15 and x >= 1280:
             x = 10
             bound = 14
@@ -443,7 +453,7 @@ def movement(): #this the movement
         if bound == 14 and x <= 195 and y >= 680:
             y = 15
             bound = 16
-
+         # This lets the user back to the previous screen    
         if bound == 16 and y <= 0:
             y = 670
             bound = 14
@@ -451,7 +461,7 @@ def movement(): #this the movement
         if bound == 14 and x >= 1036 and y >= 680:
             y = 20
             bound = 17
-
+         # This lets the user back to the previous screen    
         if bound == 17 and y <= 0:
             y = 670
             bound = 14
@@ -459,15 +469,15 @@ def movement(): #this the movement
         if bound == 17 and y >= 680:
             y = 10
             bound = 19
-            
+          # This lets the user back to the previous screen       
         if bound == 18 and y >= 680:
             y = 280
             bound = 15
-
+         # This lets the user back to the previous screen    
         if bound == 19 and y <= 0:
             y = 670
             bound = 17
-
+#This is the unlocking of the 3rd door with two keys
         if x >= 597 and x <= 697 and y >=124 and y >= 174 and key_place2 == 1 and bound == 12 and unlock == 1:
             pygame.mixer.Sound.play(doorunlocked)
             unlock += 1
@@ -480,7 +490,7 @@ def movement(): #this the movement
             key_place2 = 0
             print ("You got one of them! One to go!")    
 
-        if x >= 643 and x <= 743 and y >=378 and y >= 428 and key_place2 == 3 and bound == 16 and unlock >= 1:
+        if x >= 615 and x <= 715 and y >=351 and y >= 401 and key_place2 == 3 and bound == 16 and unlock >= 1:
             if unlock == 1:
                 pygame.mixer.Sound.play(doorunlocked)
                 print ("You got one of them! One to go!")
@@ -490,7 +500,7 @@ def movement(): #this the movement
             unlock += 1
             key_place2 = 0
 
-        if x >= 112 and x <= 212 and y >= 292 and y <=342 and key_place3 == 1 and bound == 15 and unlock >= 1:
+        if x >= 98 and x <= 198 and y >= 266 and y <=3316 and key_place3 == 1 and bound == 15 and unlock >= 1:
            if unlock == 1:
                pygame.mixer.Sound.play(doorunlocked)
                print ("You got one of them! One to go!")
@@ -519,8 +529,18 @@ def movement(): #this the movement
                 print ("You got both of them! Now go and be free!")
             unlock += 1
             key_place3 = 0        
-            
-        if bound == 0:
+#This to go to the end room 
+        if bound == 20 and x >= 1200:
+            x = 580
+            y = 271
+            bound = 21
+            pygame.mixer.music.stop() 
+            backmusic = pygame.mixer.music.load("Frozen_Star.mp3")# loads the third song
+            pygame.mixer.music.play(-1)#plays it at half volume
+            pygame.mixer.music.set_volume(0.5)
+        
+         # The boundaries for the different screens, screens are defined by the var bound and its value   
+        if bound == 0: 
             if x <= 315: #these if statement are for the boundry of the charcter, BTW the top left corner is (0,0)
                 x += 7
             if  x >= 830:
@@ -782,19 +802,53 @@ def movement(): #this the movement
                 y -= 14
             if x <= 250:
                 x += 14
-        
+
+        if bound == 21:
+            if x <= 328:
+                x += 14
+            if x >= 825:
+                x -= 14
+            if y >= 509:
+                y -= 14
+            if x <= 502 and y <= 138:
+                y += 14
+            if x >= 747 and y <= 138:
+                y += 14
+
+        if bound == 11:
+            if y >= 341:
+                y -= 14
+            if y <= 236 and x < 841:
+                y += 14
+            if y <= 236 and x >= 1080:
+                y += 14
+
+        if bound == 22:
+            if x <= 328:
+                x += 14
+            if x >= 825:
+                x -= 14
+            if y >= 509:
+                y -= 14
+            if x <= 502 and y <= 138:
+                y += 14
+            if x >= 747 and y <= 138:
+                y += 14
+     #these are the graphics and whats going on in each screen           
         if bound == 0: 
             screen.fill(colr)
-            total_seconds = frame_count // frame_rate
+            #this is the timer
+            total_seconds = frame_count // frame_rate # find the total seconds
             minutes = total_seconds // 60
             seconds = total_seconds % 60
-            output_string = "{0:02}:{1:02}".format(minutes, seconds)
-            time = font.render(output_string, True, recc)
-            screen.blit(time, [1100, 35])
-            total_seconds = (frame_count // frame_rate)
+            output_string = "{0:02}:{1:02}".format(minutes, seconds) # puts the minutes adn seconds in this format
+            time = font.render(output_string, True, recc) # renders the output_string as a pic
+            screen.blit(time, [1100, 35])#allows it to be put on the screen
+            total_seconds = (frame_count // frame_rate) 
             if total_seconds < 0:
                 total_seconds = 0
-            frame_count += 1
+            frame_count += 1#adds one seconds
+            # only the above is the timer
             screen.blit( corridor, (945, 220))
             screen.blit( closed, (945, 220)) 
             screen.blit( startroom, (315, 35))
@@ -861,7 +915,7 @@ def movement(): #this the movement
             screen.blit( corridor34, (250, 470,))
             screen.blit( Leveloneexit, (1235, 205,))
             text("If you see black holes in the wall, they are gates to go up!", 200, 50, 900, 100, 36)
-            if unlock == 1:
+            if unlock == 1: #basically looks if the var unlock is 1 and gets rid of the exit door 
                 pygame.draw.rect(screen, recc, [1235, 205, 45, 280])
             Chr( x, y)
             pygame.display.update()
@@ -882,7 +936,7 @@ def movement(): #this the movement
             screen.blit(room2 ,(340, 30))
             screen.blit(corridor5, (840, 460))
             Chr(x,y)
-            if key_place == 1:
+            if key_place == 1: #any lines with if key_place/key_place2/key_place3 is checking for the value of the varible respectively and then puts the key on the screen if it gives true
                 screen.blit(key, (410, 199))
             pygame.display.update()
             timer.tick(60)
@@ -1153,7 +1207,7 @@ def movement(): #this the movement
             screen.blit(room2 ,(340, 30))
             screen.blit(corridor5, (840, 460))
             Chr(x, y)
-            if key_place3 == 3:
+            if key_place3 == 2:
                 screen.blit(key,(660, 292))
             pygame.display.update()
             timer.tick(60)
@@ -1172,12 +1226,89 @@ def movement(): #this the movement
             frame_count += 1
             screen.blit(Longcorridor,( 250, 220))
             screen.blit(Largecorridor,(1020, 0))
+            pygame.draw.rect(screen, colr, [1270, 0, 10, 680])
             Chr(x, y)
             if key_place3 == 3:
                 screen.blit(key,(294, 290))
-            pygame.draw.rect(screen, colr, [1270, 0, 10, 680])
+            pygame.display.update()
+            timer.tick(60)
+
+        if bound == 20:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit( corridor2_op, (0, 220))
+            if unlock == 3:
+                pygame.draw.rect(screen, recc, [1200, 205, 45, 280])
+            Chr(x, y)
+            pygame.display.update()
+            timer.tick(60)
+
+        if bound == 21:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit( FinalRoomCL, (315, 35))
+            text("You did it, the Lord of the Flies and his minions have fled! You can Leave!", 0 , 460, 1280, 220, 36)
+            Chr(x, y)
+            pygame.display.update()
+            timer.tick(60)
+            pygame.time.delay(1000)
+            bound = 22
+
+        if bound == 22:
+            screen.fill(colr)
+            total_seconds = frame_count // frame_rate
+            minutes = total_seconds // 60
+            seconds = total_seconds % 60
+            output_string = "{0:02}:{1:02}".format(minutes, seconds)
+            time = font.render(output_string, True, recc)
+            screen.blit(time, [1100, 35])
+            total_seconds = (frame_count // frame_rate)
+            if total_seconds < 0:
+                total_seconds = 0
+            frame_count += 1
+            screen.blit( FinalRoomOP, (315, 35))
+            Chr(x, y)
             pygame.display.update()
             timer.tick(60)
             
+        if bound == 22 and y <= 138:
+            screen.fill(colr)
+            text(" Enter your name in the Shell or Command Prompt", 500, 100, 300, 200, 36)
+            pygame.display.update()
+            timer.tick(60)
+            name = input("Enter Name: ") #askes for name 
+            bound = 23
+            
+        if bound == 23:
+            score = 100 # this is the max score and the beginning score
+            frame_count += 0 #Stops the timer
+            if minutes >= 7: # if it 7 min, the minutes var is subtracted by 6 to do score calculations 
+                 minutes -= 6 
+                 score -= - minutes # calculates score
+            screen.fill(colr)
+            text("Final Score", 500, 100, 300, 200, 36)
+            text((name), 500, 200, 300, 200, 60)
+            text(str(score), 500, 300, 300, 200, 72)
+            pygame.display.update()
+            timer.tick(60)
+        
 game()
 pygame.quit()  
