@@ -7,31 +7,31 @@ pygame.init()
 
 screen = pygame.display.set_mode((1280,680)) #the screen size
 
-backmusic = pygame.mixer.music.load("Cloud_Wheels_Castle_Builder.mp3") # loads the background music
-dooropen = pygame.mixer.Sound("Wood_Door_Creak_Open.wav") # loads the opening door sound
-doorunlocked = pygame.mixer.Sound("Opening_door_with_Key.wav") # loads the unlocking door sound
-startroom = pygame.image.load('Starting Room.png') # load the starting room pic
-key = pygame.image.load('Lock_Large.png') # Load the key pic
-corridor = pygame.image.load('Corridor.png') # load the 1st corridor pic
-closed = pygame.image.load('Closed door.png') # load the closed door pic
-opened = pygame.image.load('Open Door.png') #load the open door pic
-corridor2_cl = pygame.image.load('Corridor 2 Closed.png')# loads the close door corridor 2 pic
-corridor2_op = pygame.image.load('Corridor 2 Open.png')# loads the open door corridor 2 pic
-corridor34 = pygame.image.load('Corridor 3,4.png') # loads the corridor 3/4
-Leveloneexit = pygame.image.load('Boss Door One Keyhole.png') # loads the 1st level exit
-Longcorridor = pygame.image.load('Long corridor.png') #loads long corridor
-corridor5 = pygame.image.load('Corridor 5.png') #loads 5th corridor
-corridor6 = pygame.image.load('Corridor 6.png')# loads 6th corridor
-corridor7 = pygame.image.load('Corridor 7.png')# loads 7th corridor
-corridor8 = pygame.image.load('Corridor 8.png')# loads 8th corridor
-corridor10 = pygame.image.load('Corridor 10.png')# loads 10th corridor
-Largecorridor = pygame.image.load('Corridor large.png')# loads 8th corridor
-room2 = pygame.image.load('Room 2.png') # loads 2nd room
-room3 = pygame.image.load('Room 3.png') # loads 3rd room
-rooml2 = pygame.image.load('Boss Room.png')# loads the level 2 room
-finalexit = pygame.image.load('Boss Door Two Keyhole.png')# loads the final exit!!
-FinalRoomCL = pygame.image.load('Boss Room Closed.png')# loads the final room clossed!!
-FinalRoomOP = pygame.image.load('Boss Room Open.png')# loads the final room open!!
+backmusic = pygame.mixer.music.load("Music\Cloud_Wheels_Castle_Builder.mp3") # loads the background music
+dooropen = pygame.mixer.Sound("Music\Wood_Door_Creak_Open.wav") # loads the opening door sound
+doorunlocked = pygame.mixer.Sound("Music\Opening_door_with_Key.wav") # loads the unlocking door sound
+startroom = pygame.image.load('Room\Starting Room.png') # load the starting room pic
+key = pygame.image.load('Door\Lock_Large.png') # Load the key pic
+corridor = pygame.image.load('Corridor\Corridor.png') # load the 1st corridor pic
+closed = pygame.image.load('Door\Closed door.png') # load the closed door pic
+opened = pygame.image.load('Door\Open Door.png') #load the open door pic
+corridor2_cl = pygame.image.load('Corridor\Corridor 2 Closed.png')# loads the close door corridor 2 pic
+corridor2_op = pygame.image.load('Corridor\Corridor 2 Open.png')# loads the open door corridor 2 pic
+corridor34 = pygame.image.load('Corridor\Corridor 3,4.png') # loads the corridor 3/4
+Leveloneexit = pygame.image.load('Door\Boss Door One Keyhole.png') # loads the 1st level exit
+Longcorridor = pygame.image.load('Corridor\Long corridor.png') #loads long corridor
+corridor5 = pygame.image.load('Corridor\Corridor 5.png') #loads 5th corridor
+corridor6 = pygame.image.load('Corridor\Corridor 6.png')# loads 6th corridor
+corridor7 = pygame.image.load('Corridor\Corridor 7.png')# loads 7th corridor
+corridor8 = pygame.image.load('Corridor\Corridor 8.png')# loads 8th corridor
+corridor10 = pygame.image.load('Corridor\Corridor 10.png')# loads 10th corridor
+Largecorridor = pygame.image.load('Corridor\Corridor large.png')# loads 8th corridor
+room2 = pygame.image.load('Room\Room 2.png') # loads 2nd room
+room3 = pygame.image.load('Room\Room 3.png') # loads 3rd room
+rooml2 = pygame.image.load('Room\Boss Room.png')# loads the level 2 room
+finalexit = pygame.image.load('Door\Boss Door Two Keyhole.png')# loads the final exit!!
+FinalRoomCL = pygame.image.load('Room\Boss Room Closed.png')# loads the final room clossed!!
+FinalRoomOP = pygame.image.load('Room\Boss Room Open.png')# loads the final room open!!
 
 pygame.mixer.music.play(-1) # play the music and loops it
 pygame.mixer.music.set_volume(0.5) # sets the volume to half
@@ -110,8 +110,8 @@ def Startaction(): #this lets the user click on the start button
                     screen.fill(colr)
                     pygame.draw.rect(screen, recc,[250,50,335,400],5) #Draws rectangles on the screen
                     global ChrF # turns the ChrF var into a global var that other functions can use
-                    ChrF = pygame.image.load('Character - GirlV2.png') #Loads the image of female card
-                    ChrM = pygame.image.load('Character - Dude.png') # loads the male card image
+                    ChrF = pygame.image.load('Characters\Character - GirlV2.png') #Loads the image of female card
+                    ChrM = pygame.image.load('Characters\Character - Dude.png') # loads the male card image
                     screen.blit(ChrF, (250, 50))# puts the image on the screen 
                     pygame.draw.rect(screen, recc,[620,50,335,400],5) 
                     screen.blit(ChrM, (620, 50))
@@ -242,12 +242,12 @@ def story(a): #story function
 
 def Chr( x, y): #this is to load the character pic
     if char == 1: #female character
-     Chrct = pygame.image.load('Girl drawing Larger.png') #loads the female character
+     Chrct = pygame.image.load('Characters\Girl drawing Larger.png') #loads the female character
      screen.blit(Chrct, (x, y))
      pygame.display.update()
      timer.tick(60)
     if char == 2: #male
-     Chrct = pygame.image.load('Guy drawing Larger.png') #loads the male character
+     Chrct = pygame.image.load('Characters\Guy drawing Larger.png') #loads the male character
      screen.blit(Chrct, (x, y))
      pygame.display.update()
      timer.tick(60)
